@@ -1,25 +1,347 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qyp-yD-RK8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--BET-->
+        <scene sceneID="fVf-jQ-CVH">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vhk-2u-VeV" customClass="HomeViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="hWA-3e-nlD"/>
+                        <viewControllerLayoutGuide type="bottom" id="abR-1O-PbV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="9qm-ed-9dR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="BET" id="mWb-VP-dXE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="14o-vD-XwO">
+                            <connections>
+                                <segue destination="j2c-V2-Fgg" kind="show" id="8e0-kw-2OT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6TH-Kp-kco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1702" y="737"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="koZ-66-oK1">
+            <objects>
+                <tableViewController id="jG4-eS-e2H" customClass="FriendsTableViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Mv-9x-thV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MTJ-UN-ms7">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MTJ-UN-ms7" id="CN4-CF-KOs">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jG4-eS-e2H" id="zf7-lU-aHa"/>
+                            <outlet property="delegate" destination="jG4-eS-e2H" id="4qm-YW-ceC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="HAi-fH-Uvy"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQM-7h-zAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="1468"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="epe-dl-zIK">
+            <objects>
+                <navigationController id="LGM-C0-kKA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" id="tlD-ya-MpP"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NjA-WG-yMj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jG4-eS-e2H" kind="relationship" relationship="rootViewController" id="DhT-fh-bGG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ee8-4p-Nqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="1459"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YHV-5M-saJ">
+            <objects>
+                <viewController id="bsT-C8-UDF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XyJ-NL-6wP"/>
+                        <viewControllerLayoutGuide type="bottom" id="JVB-fv-Y3M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NJ7-8C-6iW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="f5F-3e-zlm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fw9-H4-nY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1654" y="2136"/>
+        </scene>
+        <!--BET-->
+        <scene sceneID="ff1-BR-dO7">
+            <objects>
+                <viewController id="qFc-MR-L4P" customClass="MyProfileViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UZP-q4-bFV"/>
+                        <viewControllerLayoutGuide type="bottom" id="LQR-Id-lT2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m1V-3u-slH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="BET" id="mHr-1Z-M8T">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="k34-gi-NN5">
+                            <connections>
+                                <segue destination="TFX-uh-loU" kind="show" id="iXS-25-YrC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IJ0-sf-EZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1702" y="-583"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="C7x-wF-1dz">
+            <objects>
+                <viewController id="TFX-uh-loU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="chf-Iz-jej"/>
+                        <viewControllerLayoutGuide type="bottom" id="e62-WD-1Hw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="szc-6b-2nk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="SiJ-73-WB3">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="K6G-tb-eZ7">
+                            <color key="tintColor" red="1" green="0.093669809471172427" blue="0.048010594725107048" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jrW-HP-TFs"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mxb-MS-pyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392" y="-583"/>
+        </scene>
+        <!--BET-->
+        <scene sceneID="7nf-Pq-H7y">
+            <objects>
+                <viewController id="cmc-yv-Vob" customClass="MyBetsViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pFm-ol-H6M"/>
+                        <viewControllerLayoutGuide type="bottom" id="adq-WK-CVy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Vf-fA-CYR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="BET" id="KvT-tW-hUP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dwq-Y5-6fK">
+                            <connections>
+                                <segue destination="j2c-V2-Fgg" kind="show" identifier="createBet" id="5ts-2M-lsM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ry-cm-Cgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1702" y="77"/>
+        </scene>
+        <!--New Bet-->
+        <scene sceneID="dD6-1E-PzY">
+            <objects>
+                <viewController id="j2c-V2-Fgg" customClass="NewBetViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PSX-xg-guB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jl3-Cf-2xV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y3V-4d-Kzs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who are you betting?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuO-Em-rCd">
+                                <rect key="frame" x="82" y="108" width="169" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What's the bet?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXn-gs-noP">
+                                <rect key="frame" x="82" y="146" width="145" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stakes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf9-A6-f0n">
+                                <rect key="frame" x="82" y="301" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6">
+                                <rect key="frame" x="288" y="105" width="240" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-I4-ceY">
+                                <rect key="frame" x="288" y="301" width="240" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xku-O8-jvg">
+                                <rect key="frame" x="288" y="143" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Bet" id="t3o-6g-pMQ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mes-4f-6Xw">
+                            <color key="tintColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="Cancel" unwindAction="unwindToHomeViewController:" id="4b6-YT-P5m"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bXx-b6-hCg">
+                            <connections>
+                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="Save" unwindAction="unwindToHomeViewController:" id="gvt-fc-oJW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="betDescription" destination="xku-O8-jvg" id="pWr-D7-ae4"/>
+                        <outlet property="stakes" destination="dSA-I4-ceY" id="lrg-gw-rug"/>
+                        <outlet property="userToBet" destination="2FB-oa-9t6" id="y48-Wh-aah"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VeB-C8-ehH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0iD-zY-Ngj" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2500" y="303"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Exi-3x-fgR">
+            <objects>
+                <tabBarController id="qyp-yD-RK8" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="slA-5H-tpC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="WJH-8R-piU" kind="relationship" relationship="viewControllers" id="KFd-dB-EjG"/>
+                        <segue destination="Hpd-9f-bnP" kind="relationship" relationship="viewControllers" id="IXV-Hi-4yL"/>
+                        <segue destination="5SX-4J-WtO" kind="relationship" relationship="viewControllers" id="NPp-Os-woB"/>
+                        <segue destination="LGM-C0-kKA" kind="relationship" relationship="viewControllers" id="m8Y-Wh-Sk6"/>
+                        <segue destination="pUJ-ps-PS5" kind="relationship" relationship="viewControllers" id="kG5-o6-8Na"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yp5-pG-aWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="70" y="407"/>
+        </scene>
+        <!--My Bets-->
+        <scene sceneID="2bD-Nq-weN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hpd-9f-bnP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Bets" id="dse-qU-6Bm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w4r-X7-AfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cmc-yv-Vob" kind="relationship" relationship="rootViewController" id="RUz-Ee-1yZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ty4-sR-ifw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="77"/>
+        </scene>
+        <!--My Profile-->
+        <scene sceneID="Pm4-mW-bJh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5SX-4J-WtO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Profile" id="Jzr-7I-XSs"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wVH-Dl-fg6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qFc-MR-L4P" kind="relationship" relationship="rootViewController" id="uB7-qd-neu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eIg-Ob-KqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="-583"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="lTh-FP-cPb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WJH-8R-piU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="PLZ-dz-YJI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mJt-sO-kuh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vhk-2u-VeV" kind="relationship" relationship="rootViewController" id="POg-BR-IgS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fM-CE-NCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="737"/>
+        </scene>
+        <!--Requests-->
+        <scene sceneID="wqG-cy-Z8k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pUJ-ps-PS5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Requests" id="pCs-g0-fBO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VXQ-Sh-ZF2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bsT-C8-UDF" kind="relationship" relationship="rootViewController" id="c1c-nA-yRa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dto-8V-byx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="842" y="2136"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5ts-2M-lsM"/>
+    </inferredMetricsTieBreakers>
 </document>
