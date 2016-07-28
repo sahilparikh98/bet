@@ -10,6 +10,8 @@ import UIKit
 
 class MyBetsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    var myBets: [Bet] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,4 +41,17 @@ class MyBetsViewController: UIViewController {
     }
 
 
+}
+
+extension MyBetsViewController: UITableViewDataSource
+{
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.myBets.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("BetCell")!
+        cell.textLabel!.text = "Bet"
+        return cell
+    }
 }

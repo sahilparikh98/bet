@@ -3,12 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--BET-->
+        <!--Home View Controller-->
         <scene sceneID="fVf-jQ-CVH">
             <objects>
-                <viewController id="Vhk-2u-VeV" customClass="HomeViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home View Controller" id="Vhk-2u-VeV" customClass="HomeViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hWA-3e-nlD"/>
                         <viewControllerLayoutGuide type="bottom" id="abR-1O-PbV"/>
@@ -16,9 +18,95 @@
                     <view key="view" contentMode="scaleToFill" id="9qm-ed-9dR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TWQ-0P-Nnm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendBetCell" rowHeight="70" id="ABz-iU-vLr" customClass="FriendBetTableViewCell" customModule="bet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ABz-iU-vLr" id="0aW-sd-lQP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend vs. Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cak-kW-YDk">
+                                                    <rect key="frame" x="15" y="8" width="362" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tT-9R-jyV">
+                                                    <rect key="frame" x="503" y="40" width="89" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIo-G6-ClV">
+                                                    <rect key="frame" x="15" y="37" width="480" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="betDescription" destination="NIo-G6-ClV" id="LcL-uB-gv3"/>
+                                            <outlet property="timestamp" destination="9tT-9R-jyV" id="TwF-tP-LF6"/>
+                                            <outlet property="usersInvolved" destination="cak-kW-YDk" id="ggW-Fe-M1o"/>
+                                            <segue destination="0UT-al-NRX" kind="show" id="bjT-lF-ZXG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyBetCell" rowHeight="70" id="hcV-RK-esx" customClass="MyBetTableViewCell" customModule="bet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="162" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcV-RK-esx" id="f82-5G-qcn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You vs. Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXu-Ob-Cc5">
+                                                    <rect key="frame" x="17" y="8" width="114" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeN-Dr-n1s">
+                                                    <rect key="frame" x="17" y="37" width="473" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZN-5Z-gER">
+                                                    <rect key="frame" x="505" y="37" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="betDescription" destination="QeN-Dr-n1s" id="0fG-pu-Ueg"/>
+                                            <outlet property="timestamp" destination="PZN-5Z-gER" id="B00-QV-9qh"/>
+                                            <outlet property="usersInvolved" destination="qXu-Ob-Cc5" id="94Z-40-w8E"/>
+                                            <segue destination="Wnx-fl-KUO" kind="show" id="j9m-52-Euu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vhk-2u-VeV" id="6Jy-Pj-Z81"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="TWQ-0P-Nnm" secondAttribute="trailing" id="5tf-2n-HD7"/>
+                            <constraint firstItem="TWQ-0P-Nnm" firstAttribute="leading" secondItem="9qm-ed-9dR" secondAttribute="leading" id="BKG-oS-xWi"/>
+                            <constraint firstItem="abR-1O-PbV" firstAttribute="top" secondItem="TWQ-0P-Nnm" secondAttribute="bottom" id="UOT-Fa-NVm"/>
+                            <constraint firstItem="TWQ-0P-Nnm" firstAttribute="top" secondItem="hWA-3e-nlD" secondAttribute="bottom" constant="-64" id="fNZ-Ia-uF2"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BET" id="mWb-VP-dXE">
+                    <navigationItem key="navigationItem" title="Home" id="mWb-VP-dXE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="ebH-HS-PLw"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="14o-vD-XwO">
                             <connections>
                                 <segue destination="j2c-V2-Fgg" kind="show" id="8e0-kw-2OT"/>
@@ -59,6 +147,91 @@
             </objects>
             <point key="canvasLocation" x="1714" y="1468"/>
         </scene>
+        <!--Your Bet-->
+        <scene sceneID="DsP-pR-ZEI">
+            <objects>
+                <viewController title="Your Bet" id="Wnx-fl-KUO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Dk-Qi-XWq"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Gc-fy-Ghv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vB4-tW-Pqw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uA9-LI-Dt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3060" y="1382"/>
+        </scene>
+        <!--Friend Request-->
+        <scene sceneID="Lpp-jG-mDo">
+            <objects>
+                <viewController id="hQf-hl-8GK" customClass="DisplayFriendRequestViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EQ8-5I-nKm"/>
+                        <viewControllerLayoutGuide type="bottom" id="rw3-Bj-CP8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Ap-yj-4Wc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04I-FN-oca">
+                                <rect key="frame" x="27" y="101" width="240" height="224"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kA-Qf-K2E">
+                                <rect key="frame" x="313" y="113" width="287" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-Mn-3qX">
+                                <rect key="frame" x="313" y="152" width="287" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wy-Kq-cGK">
+                                <rect key="frame" x="313" y="196" width="287" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Friend Request" id="CYE-SU-Aq1">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="7ND-Hj-zM8">
+                            <connections>
+                                <segue destination="Dee-EW-8Ql" kind="unwind" identifier="backToRequests" unwindAction="unwindToRequestsViewController:" id="MZa-03-Z28"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Accept" id="Uhs-SD-WbC">
+                                <color key="tintColor" red="0.052017980329999998" green="0.72309695510000005" blue="0.083916578340000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="Dee-EW-8Ql" kind="unwind" identifier="acceptFriendRequest" unwindAction="unwindToRequestsViewController:" id="qqZ-LM-ZaY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Reject" id="sWG-dZ-fuY">
+                                <color key="tintColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="Dee-EW-8Ql" kind="unwind" identifier="rejectFriendRequest" unwindAction="unwindToRequestsViewController:" id="07B-he-9ao"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameLabel" destination="3kA-Qf-K2E" id="Qps-Ln-QwP"/>
+                        <outlet property="profilePicture" destination="04I-FN-oca" id="JTG-JX-re3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d4d-RJ-sew" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Dee-EW-8Ql" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2370" y="1463"/>
+        </scene>
         <!--Friends-->
         <scene sceneID="epe-dl-zIK">
             <objects>
@@ -76,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="841" y="1459"/>
         </scene>
-        <!--View Controller-->
+        <!--Requests View Controller-->
         <scene sceneID="YHV-5M-saJ">
             <objects>
-                <viewController id="bsT-C8-UDF" sceneMemberID="viewController">
+                <viewController title="Requests View Controller" id="bsT-C8-UDF" customClass="RequestsViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XyJ-NL-6wP"/>
                         <viewControllerLayoutGuide type="bottom" id="JVB-fv-Y3M"/>
@@ -87,15 +260,133 @@
                     <view key="view" contentMode="scaleToFill" id="NJ7-8C-6iW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2eG-W3-DJN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RequestCell" rowHeight="70" id="uQJ-Oa-e7t" customClass="RequestTableViewCell" customModule="bet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQJ-Oa-e7t" id="uOD-NF-TNm">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFr-Nc-16x">
+                                                    <rect key="frame" x="8" y="24" width="557" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="requestType" destination="KFr-Nc-16x" id="3uk-sc-1Ia"/>
+                                            <segue destination="Pvx-VC-PaC" kind="show" identifier="displayBetRequest" id="ggB-Af-tPS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendRequestCell" id="WAR-Jg-Sec" userLabel="FriendRequestCell" customClass="FriendRequestTableViewCell" customModule="bet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="162" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WAR-Jg-Sec" id="hDt-7F-TY8">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfG-S5-p4X">
+                                                    <rect key="frame" x="8" y="24" width="383" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="friendRequestLabel" destination="yfG-S5-p4X" id="qLn-0P-ZgS"/>
+                                            <segue destination="hQf-hl-8GK" kind="show" identifier="displayFriendRequest" id="n5Z-Cq-1mt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bsT-C8-UDF" id="Wp0-Bf-8Hr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2eG-W3-DJN" firstAttribute="leading" secondItem="NJ7-8C-6iW" secondAttribute="leading" id="18a-oZ-QTp"/>
+                            <constraint firstItem="2eG-W3-DJN" firstAttribute="top" secondItem="NJ7-8C-6iW" secondAttribute="topMargin" id="1mi-tC-jD7"/>
+                            <constraint firstItem="JVB-fv-Y3M" firstAttribute="top" secondItem="2eG-W3-DJN" secondAttribute="bottom" id="MOF-R2-Kma"/>
+                            <constraint firstAttribute="trailing" secondItem="2eG-W3-DJN" secondAttribute="trailing" id="N6V-YT-QLh"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="f5F-3e-zlm"/>
+                    <navigationItem key="navigationItem" title="Requests" id="f5F-3e-zlm"/>
+                    <connections>
+                        <outlet property="tableView" destination="2eG-W3-DJN" id="sFT-VC-WVu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw9-H4-nY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="2136"/>
+            <point key="canvasLocation" x="1714" y="2136"/>
         </scene>
-        <!--BET-->
+        <!--Bet Request-->
+        <scene sceneID="Xj3-XL-UyQ">
+            <objects>
+                <viewController id="Pvx-VC-PaC" customClass="DisplayBetRequestViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2cP-U6-CSY"/>
+                        <viewControllerLayoutGuide type="bottom" id="mfD-jD-HNT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Qj-pj-fgD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gt-Q0-Avi">
+                                <rect key="frame" x="273" y="257" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDw-A0-iWg">
+                                <rect key="frame" x="273" y="195" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-4r-Qm9">
+                                <rect key="frame" x="273" y="147" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bet Request" id="m9j-KT-Qhg">
+                        <barButtonItem key="leftBarButtonItem" title="Reject" id="hTo-3O-v3t">
+                            <color key="tintColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="quu-ud-i3K" kind="unwind" identifier="Accept" unwindAction="unwindToRequestsViewController:" id="yJJ-rn-GBC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Accept" id="yf9-iS-iJp">
+                            <color key="tintColor" red="0.052017980334959871" green="0.72309695512820515" blue="0.083916578335320541" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="quu-ud-i3K" kind="unwind" identifier="Reject" unwindAction="unwindToRequestsViewController:" id="t14-bh-Gbb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="betDescription" destination="IDw-A0-iWg" id="A5h-GV-joZ"/>
+                        <outlet property="betStakes" destination="5Gt-Q0-Avi" id="jvb-FP-S0Q"/>
+                        <outlet property="fromUser" destination="2NE-4r-Qm9" id="cWk-t7-T8b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Xh-Pi-0UM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="quu-ud-i3K" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="2136"/>
+        </scene>
+        <!--My Profile-->
         <scene sceneID="ff1-BR-dO7">
             <objects>
                 <viewController id="qFc-MR-L4P" customClass="MyProfileViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
@@ -108,7 +399,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BET" id="mHr-1Z-M8T">
+                    <navigationItem key="navigationItem" title="My Profile" id="mHr-1Z-M8T">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="k34-gi-NN5">
                             <connections>
                                 <segue destination="TFX-uh-loU" kind="show" id="iXS-25-YrC"/>
@@ -144,10 +435,10 @@
             </objects>
             <point key="canvasLocation" x="2392" y="-583"/>
         </scene>
-        <!--BET-->
+        <!--My Bets View Controller-->
         <scene sceneID="7nf-Pq-H7y">
             <objects>
-                <viewController id="cmc-yv-Vob" customClass="MyBetsViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cmc-yv-Vob" userLabel="My Bets View Controller" customClass="MyBetsViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pFm-ol-H6M"/>
                         <viewControllerLayoutGuide type="bottom" id="adq-WK-CVy"/>
@@ -155,15 +446,63 @@
                     <view key="view" contentMode="scaleToFill" id="6Vf-fA-CYR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j2D-V4-505">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyBetCell" rowHeight="70" id="m4v-Cx-bW7">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m4v-Cx-bW7" id="b2D-cW-P1m">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your bet with friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygz-RU-zZg">
+                                                    <rect key="frame" x="21" y="0.0" width="154" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y94-pM-uK9">
+                                                    <rect key="frame" x="21" y="29" width="434" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI3-9w-5iD">
+                                                    <rect key="frame" x="501" y="35" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cmc-yv-Vob" id="w24-tk-JH7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j2D-V4-505" firstAttribute="top" secondItem="pFm-ol-H6M" secondAttribute="bottom" constant="-64" id="3dG-fU-kXd"/>
+                            <constraint firstItem="j2D-V4-505" firstAttribute="leading" secondItem="6Vf-fA-CYR" secondAttribute="leading" id="77g-nn-mZc"/>
+                            <constraint firstAttribute="trailing" secondItem="j2D-V4-505" secondAttribute="trailing" id="T4s-R0-3dh"/>
+                            <constraint firstItem="adq-WK-CVy" firstAttribute="top" secondItem="j2D-V4-505" secondAttribute="bottom" id="hOx-XN-nc9"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BET" id="KvT-tW-hUP">
+                    <navigationItem key="navigationItem" title="My Bets" id="KvT-tW-hUP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dwq-Y5-6fK">
                             <connections>
                                 <segue destination="j2c-V2-Fgg" kind="show" identifier="createBet" id="5ts-2M-lsM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="j2D-V4-505" id="WLm-TS-vMN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ry-cm-Cgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,19 +523,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who are you betting?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuO-Em-rCd">
                                 <rect key="frame" x="82" y="108" width="169" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What's the bet?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXn-gs-noP">
                                 <rect key="frame" x="82" y="146" width="145" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stakes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf9-A6-f0n">
                                 <rect key="frame" x="82" y="301" width="66" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6">
@@ -340,8 +679,26 @@
             </objects>
             <point key="canvasLocation" x="842" y="2136"/>
         </scene>
+        <!--Friend Bet-->
+        <scene sceneID="yVn-nN-OMN">
+            <objects>
+                <viewController title="Friend Bet" id="0UT-al-NRX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V8c-LX-Y6k"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Hz-tM-cpF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gwe-Q8-BH6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-m5-fRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217" y="634"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5ts-2M-lsM"/>
+        <segue reference="8e0-kw-2OT"/>
     </inferredMetricsTieBreakers>
 </document>

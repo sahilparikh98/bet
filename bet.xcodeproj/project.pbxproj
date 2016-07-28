@@ -10,6 +10,18 @@
 		184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184188971D42847900DCDD09 /* NewBetViewController.swift */; };
 		1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889C1D42B30500DCDD09 /* ParseHelper.swift */; };
 		1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889E1D42DDF700DCDD09 /* Bet.swift */; };
+		18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */; };
+		18763F361D4958810014ED6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F351D4958810014ED6E /* User.swift */; };
+		18763F381D4977F60014ED6E /* Friendships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F371D4977F60014ED6E /* Friendships.swift */; };
+		188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188196161D47C8560054548F /* RequestTableViewCell.swift */; };
+		188196191D4802B20054548F /* DisplayBetRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188196181D4802B20054548F /* DisplayBetRequestViewController.swift */; };
+		1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */; };
+		189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */; };
+		189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */; };
+		18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB521D46836400CC03C3 /* RequestsViewController.swift */; };
+		18DBAB551D4683F600CC03C3 /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB541D4683F600CC03C3 /* FriendRequest.swift */; };
+		18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */; };
+		18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB591D46D96300CC03C3 /* Request.swift */; };
 		18EAAB6D1D41627400E37808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB6C1D41627400E37808 /* AppDelegate.swift */; };
 		18EAAB721D41627400E37808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EAAB701D41627400E37808 /* Main.storyboard */; };
 		18EAAB741D41627400E37808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EAAB731D41627400E37808 /* Assets.xcassets */; };
@@ -27,6 +39,18 @@
 		184188971D42847900DCDD09 /* NewBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBetViewController.swift; sourceTree = "<group>"; };
 		1841889C1D42B30500DCDD09 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		1841889E1D42DDF700DCDD09 /* Bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
+		18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayFriendRequestViewController.swift; sourceTree = "<group>"; };
+		18763F351D4958810014ED6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		18763F371D4977F60014ED6E /* Friendships.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendships.swift; sourceTree = "<group>"; };
+		188196161D47C8560054548F /* RequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
+		188196181D4802B20054548F /* DisplayBetRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayBetRequestViewController.swift; sourceTree = "<group>"; };
+		1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
+		189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetTableViewCell.swift; sourceTree = "<group>"; };
+		189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendBetTableViewCell.swift; sourceTree = "<group>"; };
+		18DBAB521D46836400CC03C3 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
+		18DBAB541D4683F600CC03C3 /* FriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
+		18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetRequestTableViewCell.swift; sourceTree = "<group>"; };
+		18DBAB591D46D96300CC03C3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		18EAAB691D41627300E37808 /* bet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EAAB6C1D41627400E37808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18EAAB711D41627400E37808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,8 +84,24 @@
 			isa = PBXGroup;
 			children = (
 				1841889E1D42DDF700DCDD09 /* Bet.swift */,
+				18DBAB541D4683F600CC03C3 /* FriendRequest.swift */,
+				18DBAB591D46D96300CC03C3 /* Request.swift */,
+				18763F351D4958810014ED6E /* User.swift */,
+				18763F371D4977F60014ED6E /* Friendships.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		18DBAB561D46B79700CC03C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */,
+				188196161D47C8560054548F /* RequestTableViewCell.swift */,
+				1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */,
+				189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */,
+				189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		18EAAB601D41627300E37808 = {
@@ -85,6 +125,7 @@
 		18EAAB6B1D41627400E37808 /* bet */ = {
 			isa = PBXGroup;
 			children = (
+				18DBAB561D46B79700CC03C3 /* Views */,
 				184188991D429E4A00DCDD09 /* Models */,
 				18EAAB7E1D41744F00E37808 /* Helpers */,
 				18EAAB7F1D41744F00E37808 /* ViewControllers */,
@@ -115,6 +156,9 @@
 				18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */,
 				18EAAB8C1D41790400E37808 /* FriendsTableViewController.swift */,
 				184188971D42847900DCDD09 /* NewBetViewController.swift */,
+				18DBAB521D46836400CC03C3 /* RequestsViewController.swift */,
+				188196181D4802B20054548F /* DisplayBetRequestViewController.swift */,
+				18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -261,14 +305,26 @@
 			files = (
 				18EAAB891D41787E00E37808 /* MyProfileViewController.swift in Sources */,
 				184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */,
+				18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */,
+				18763F381D4977F60014ED6E /* Friendships.swift in Sources */,
 				18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */,
 				18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */,
 				18EAAB851D41782600E37808 /* FriendsSearchViewController.swift in Sources */,
+				189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */,
 				1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */,
+				189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */,
+				18DBAB551D4683F600CC03C3 /* FriendRequest.swift in Sources */,
 				18EAAB6D1D41627400E37808 /* AppDelegate.swift in Sources */,
+				188196191D4802B20054548F /* DisplayBetRequestViewController.swift in Sources */,
 				18EAAB8D1D41790400E37808 /* FriendsTableViewController.swift in Sources */,
 				18EAAB811D41747300E37808 /* HomeViewController.swift in Sources */,
+				1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */,
+				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
+				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
+				18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */,
+				18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */,
 				1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */,
+				18763F361D4958810014ED6E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

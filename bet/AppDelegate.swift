@@ -25,9 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initializeWithConfiguration(configuration)
         
         Bet.registerSubclass()
-        
+        FriendRequest.registerSubclass()
+        Friendships.registerSubclass()
         do {
-            try PFUser.logInWithUsername("test", password: "test")
+            try PFUser.logInWithUsernameInBackground("test", password: "test")
         } catch {
             print("Unable to log in")
         }

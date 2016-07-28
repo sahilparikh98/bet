@@ -76,8 +76,32 @@ class NewBetViewController: UIViewController {
                 bet.againstUsers = opponentUser!
                 bet.finished = false
                 bet.stakes = self.stakes.text
-                request["toBet"] = bet
-                request.saveInBackground()
+                bet.accepted = NSNumber.init(bool: false)
+                bet.rejected = NSNumber.init(bool: false)
+                bet.fromUser = PFUser.currentUser()!
+                bet.toUser = opponentUser!
+                bet.saveInBackground()
+                let otherBet = Bet()
+                otherBet.betDescription = self.betDescription.text
+                otherBet.creatingUser = opponentUser
+                otherBet.forUsers = opponentUser!
+                otherBet.againstUsers = PFUser.currentUser()!
+                otherBet.receivingUser = PFUser.currentUser()!
+                otherBet.stakes = self.stakes.text
+                otherBet.accepted = NSNumber.init(bool: false)
+                otherBet.rejected = NSNumber.init(bool: false)
+                bet.fromUser = opponentUser!
+                bet.toUser = PFUser.currentUser()!
+                otherBet.saveInBackground()
+                let friendRequest = FriendRequest()
+                friendRequest.creatingUser = opponentUser!
+                friendRequest.receivingUser = PFUser.currentUser()!
+                friendRequest.fromUser = opponentUser!
+                friendRequest.toUser = PFUser.currentUser()!
+                friendRequest.accepted = false
+                friendRequest.rejected = false
+                friendRequest.saveInBackground()
+                
                 
             }
         }

@@ -17,4 +17,26 @@ public class ParseHelper
     {
         return PFUser.query()!
     }
+    
+    static func getUserBetRequests(completionBlock: PFQueryArrayResultBlock)
+    {
+        let query = Bet.query()
+        query!.whereKey("accepted", equalTo: false)
+        query!.whereKey("rejected", equalTo: false)
+        query!.whereKey("receivingUser", equalTo: PFUser.currentUser()!)
+        query!.includeKey("creatingUser")
+        query!.includeKey("receivingUser")
+        query!.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    static func getUserFriendRequests(completionBlock: PFQueryArrayResultBlock)
+    {
+        let friendRequestQuery = FriendRequest.query()
+        friendRequestQuery!.whereKey("accepted", equalTo: false)
+        friendRequestQuery!.whereKey("rejected", equalTo: false)
+        friendRequestQuery!.whereKey("receivingUser", equalTo: PFUser.currentUser()!)
+        friendRequestQuery!.includeKey("creatingUser")
+        friendRequestQuery!.includeKey("receivingUser")
+        friendRequestQuery!.findObjectsInBackgroundWithBlock(completionBlock)
+    }
 }
