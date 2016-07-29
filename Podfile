@@ -10,6 +10,7 @@ target 'bet' do
   pod ‘Parse’
   pod ‘ParseFacebookUtilsV4’
   pod ‘ParseUI’
+  pod “SearchTextField”
 
   # Pods for bet
 

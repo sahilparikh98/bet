@@ -14,6 +14,7 @@ class Friendships: PFObject, PFSubclassing {
         return relationForKey("friends")
     }
     
+    @NSManaged var user: PFUser?
     
     static func parseClassName() -> String {
         return "Friendships"

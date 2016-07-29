@@ -65,7 +65,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You vs. Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXu-Ob-Cc5">
-                                                    <rect key="frame" x="17" y="8" width="114" height="21"/>
+                                                    <rect key="frame" x="17" y="8" width="473" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -113,6 +113,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="TWQ-0P-Nnm" id="ldb-p9-6Sj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TH-Kp-kco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -451,7 +454,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyBetCell" rowHeight="70" id="m4v-Cx-bW7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonalBetCell" rowHeight="70" id="m4v-Cx-bW7" customClass="PersonalBetsTableViewCell" customModule="bet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m4v-Cx-bW7" id="b2D-cW-P1m">
@@ -478,6 +481,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="betDescription" destination="y94-pM-uK9" id="adS-dD-TW8"/>
+                                            <outlet property="timestamp" destination="cI3-9w-5iD" id="hIJ-Er-GhF"/>
+                                            <outlet property="usersInvolved" destination="Ygz-RU-zZg" id="13j-cT-9hD"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -574,7 +582,7 @@
                     <connections>
                         <outlet property="betDescription" destination="xku-O8-jvg" id="pWr-D7-ae4"/>
                         <outlet property="stakes" destination="dSA-I4-ceY" id="lrg-gw-rug"/>
-                        <outlet property="userToBet" destination="2FB-oa-9t6" id="y48-Wh-aah"/>
+                        <outlet property="userBeingBet" destination="2FB-oa-9t6" id="eTS-uK-W08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeB-C8-ehH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -699,6 +707,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8e0-kw-2OT"/>
+        <segue reference="5ts-2M-lsM"/>
     </inferredMetricsTieBreakers>
 </document>

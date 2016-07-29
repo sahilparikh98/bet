@@ -54,6 +54,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SearchTextField-SearchTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SearchTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -63,6 +73,11 @@
 			<true/>
 		</dict>
 		<key>11A09A967C036AE6CFECDFEA8325FE93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C72F41587A80C64B6D28E8A780CD384</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,17 +102,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8DD29C5BEF09C46D562DA000EE314921</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B448891E2BEC1EB9D93CD482655D8874</key>
+		<key>BA0ED018954B2E035A694BF72506145C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA0ED018954B2E035A694BF72506145C</key>
+		<key>BC4BE87D7851456DDBB1F996D7ED7056</key>
 		<dict>
 			<key>primary</key>
 			<true/>

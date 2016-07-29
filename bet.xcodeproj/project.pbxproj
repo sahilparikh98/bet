@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181C10051D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */; };
 		184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184188971D42847900DCDD09 /* NewBetViewController.swift */; };
 		1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889C1D42B30500DCDD09 /* ParseHelper.swift */; };
 		1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889E1D42DDF700DCDD09 /* Bet.swift */; };
@@ -18,6 +19,7 @@
 		1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */; };
 		189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */; };
 		189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */; };
+		189CDB141D4ABCFC002403EE /* NSDate+convertToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */; };
 		18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB521D46836400CC03C3 /* RequestsViewController.swift */; };
 		18DBAB551D4683F600CC03C3 /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB541D4683F600CC03C3 /* FriendRequest.swift */; };
 		18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBetsTableViewCell.swift; sourceTree = "<group>"; };
 		184188971D42847900DCDD09 /* NewBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBetViewController.swift; sourceTree = "<group>"; };
 		1841889C1D42B30500DCDD09 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		1841889E1D42DDF700DCDD09 /* Bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
 		189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetTableViewCell.swift; sourceTree = "<group>"; };
 		189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendBetTableViewCell.swift; sourceTree = "<group>"; };
+		189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+convertToString.swift"; sourceTree = "<group>"; };
 		18DBAB521D46836400CC03C3 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
 		18DBAB541D4683F600CC03C3 /* FriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		189CDB121D4ABC9F002403EE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		18DBAB561D46B79700CC03C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +112,7 @@
 				1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */,
 				189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */,
 				189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */,
+				181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +138,7 @@
 		18EAAB6B1D41627400E37808 /* bet */ = {
 			isa = PBXGroup;
 			children = (
+				189CDB121D4ABC9F002403EE /* Extensions */,
 				18DBAB561D46B79700CC03C3 /* Views */,
 				184188991D429E4A00DCDD09 /* Models */,
 				18EAAB7E1D41744F00E37808 /* Helpers */,
@@ -310,6 +324,7 @@
 				18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */,
 				18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */,
 				18EAAB851D41782600E37808 /* FriendsSearchViewController.swift in Sources */,
+				181C10051D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift in Sources */,
 				189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */,
 				1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */,
 				189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */,
@@ -321,6 +336,7 @@
 				1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */,
 				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
 				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
+				189CDB141D4ABCFC002403EE /* NSDate+convertToString.swift in Sources */,
 				18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */,
 				18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */,
 				1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */,
@@ -444,7 +460,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = bet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.bet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sahilparikh.bet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -459,7 +475,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = bet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.bet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sahilparikh.bet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

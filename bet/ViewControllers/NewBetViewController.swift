@@ -8,12 +8,14 @@
 
 import UIKit
 import Parse
+import SearchTextField
 
 class NewBetViewController: UIViewController {
 
     @IBOutlet weak var userToBet: UITextField!
     @IBOutlet weak var betDescription: UITextView!
     @IBOutlet weak var stakes: UITextField!
+    @IBOutlet weak var userBeingBet: SearchTextField!
     var users = [PFUser]()
     var opponentUser: PFUser?
     override func viewDidLoad() {
@@ -22,12 +24,13 @@ class NewBetViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.betDescription.layer.borderWidth = 1
-        self.betDescription.layer.borderColor = UIColor.grayColor().CGColor
+        self.betDescription.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.betDescription.layer.cornerRadius = 8
         let query = PFUser.query()!
         query.findObjectsInBackgroundWithBlock { (result: [PFObject]?, error: NSError?) -> Void in
             self.users = result as? [PFUser] ?? []
         }
+        
         
         
     }

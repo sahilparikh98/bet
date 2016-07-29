@@ -9,12 +9,18 @@
 import UIKit
 import Parse
 import Foundation
+import Bond
 
 class RequestsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var betRequests: [Bet] = []
     var allRequests: [PFObject] = []
+        {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var friendRequests: [FriendRequest] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,12 +118,13 @@ class RequestsViewController: UIViewController {
                 //var user: BetUser = PFUser.currentUser()!
                 let friendship = Friendships()
                 friendship.friends.addObject(displayFriendRequestController.friendRequest!.creatingUser!)
-                PFUser.currentUser()!.setObject(friendship, forKey: "friends")
-                PFUser.currentUser()!.saveInBackground()
+                friendship.user = PFUser.currentUser()!
+                //PFUser.currentUser()!.setObject(friendship, forKey: "friends")
+                //PFUser.currentUser()!.saveInBackground()
                 friendship.saveInBackground()
                 let backFriendship = Friendships()
                 backFriendship.friends.addObject(PFUser.currentUser()!)
-                displayFriendRequestController.friendRequest!.creatingUser!.setObject(backFriendship, forKey: "friends")
+                backFriendship.user = displayFriendRequestController.friendRequest!.creatingUser!
                 backFriendship.saveInBackground()
                 displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }

@@ -22,6 +22,7 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - SearchTextField (0.1.0)
 
 DEPENDENCIES:
   - Bond (= 4.0.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - Parse
   - ParseFacebookUtilsV4
   - ParseUI
+  - SearchTextField
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -39,7 +41,8 @@ SPEC CHECKSUMS:
   Parse: 4f72b1c01b3fc9038bea045681b6cc1b070c081e
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
+  SearchTextField: 3f5aecd8b33879dcaba496e5ffc7a00b9df2eb65
 
-PODFILE CHECKSUM: 4632ee79c4898236bbb5cc86915a08f43dce7edb
+PODFILE CHECKSUM: d3ad610f2e62609e9d79294e1fb516c4e167b166
 
 COCOAPODS: 1.0.1

@@ -8,12 +8,23 @@
 
 import UIKit
 import Parse
-
+import Bond
 class HomeViewController: UIViewController {
 
-    var userBets: [Bet] = []
+    @IBOutlet weak var tableView: UITableView!
+    var userBets: [Bet] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var friendBets: [Bet] = []
-    var friends: [PFUser] = []
+    var friendship: Friendships?
+    var friends: [PFUser] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var bets: [Bet] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,16 +32,52 @@ class HomeViewController: UIViewController {
         userQuery!.whereKey("creatingUser", equalTo: PFUser.currentUser()!)
         userQuery!.whereKey("finished", equalTo: false)
         userQuery!.whereKey("accepted", equalTo: true)
+        userQuery!.whereKey("rejected", equalTo: false)
+        userQuery!.includeKey("creatingUser")
+        userQuery!.includeKey("receivingUser")
         userQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
+            self.tableView.reloadData()
         }
-        let friendship = PFUser.currentUser()!.objectForKey("friends") as! Friendships
-        let friendsQuery = friendship.friends.query()
-        friendsQuery.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+        print("Bets from this user: \(self.userBets.count)")
+        let friendsQuery = Friendships.query()
+        friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
+        friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
+            self.friendship = result as? Friendships ?? nil
+        }
+        let getFriends = friendship!.friends.query()
+        getFriends.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
-            
+            self.tableView.reloadData()
         }
-       // let betsFromFriends = Bet.query()
+        let betsFromFriends = Bet.query()
+        betsFromFriends!.whereKey("accepted", equalTo: true)
+        betsFromFriends!.whereKey("rejected", equalTo: false)
+        betsFromFriends!.whereKey("finished", equalTo: false)
+        betsFromFriends!.includeKey("creatingUser")
+        betsFromFriends!.includeKey("receivingUser")
+        betsFromFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+            self.bets = result as? [Bet] ?? []
+            print("\(self.bets.count)")
+            for bet in self.bets
+            {
+                for friend in self.friends
+                {
+                    if friend.username! == bet.creatingUser!.username!
+                    {
+                        self.userBets.append(bet)
+                        print("the bet created by \(friend.username!) was added")
+                    }
+                    else
+                    {
+                        print("the bet was not added")
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
+        }
+        print("Bets after loading the friend's bets: \(self.userBets.count)")
         //betsFromFriends!.whereKey("creatingUser", matchesKey: )
         
         // Do any additional setup after loading the view.
@@ -65,4 +112,42 @@ class HomeViewController: UIViewController {
     }
     
 
+}
+
+extension HomeViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.userBets.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let bet = userBets[indexPath.row]
+        print("\(bet.creatingUser!.username!) created the bet, the current user is \(PFUser.currentUser()!.username!)")
+        if bet.creatingUser!.username! == PFUser.currentUser()!.username!
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MyBetCell", forIndexPath: indexPath) as! MyBetTableViewCell
+            cell.usersInvolved.text = "You vs. \(bet.receivingUser!.username!) this is a my bet"
+            cell.betDescription.text = "\(bet.betDescription!)"
+            cell.timestamp.text = bet.createdAt!.convertToString()
+            
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("FriendBetCell", forIndexPath: indexPath) as! FriendBetTableViewCell
+            cell.usersInvolved.text = "\(bet.creatingUser!.username!) vs. \(bet.receivingUser!.username!) this is a friend bet"
+            cell.betDescription.text = "\(bet.betDescription!)"
+            return cell
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
