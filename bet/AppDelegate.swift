@@ -27,8 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Bet.registerSubclass()
         FriendRequest.registerSubclass()
         Friendships.registerSubclass()
+        Result.registerSubclass()
         do {
-            try PFUser.logInWithUsernameInBackground("test", password: "test")
+            try PFUser.logInWithUsername("test", password: "test")
         } catch {
             print("Unable to log in")
         }

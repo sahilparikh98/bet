@@ -88,7 +88,7 @@
                                             <outlet property="betDescription" destination="QeN-Dr-n1s" id="0fG-pu-Ueg"/>
                                             <outlet property="timestamp" destination="PZN-5Z-gER" id="B00-QV-9qh"/>
                                             <outlet property="usersInvolved" destination="qXu-Ob-Cc5" id="94Z-40-w8E"/>
-                                            <segue destination="Wnx-fl-KUO" kind="show" id="j9m-52-Euu"/>
+                                            <segue destination="Wnx-fl-KUO" kind="show" identifier="displayYourBet" id="j9m-52-Euu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="1714" y="1468"/>
         </scene>
-        <!--Your Bet-->
+        <!--Your Bet View Controller-->
         <scene sceneID="DsP-pR-ZEI">
             <objects>
-                <viewController title="Your Bet" id="Wnx-fl-KUO" sceneMemberID="viewController">
+                <viewController title="Your Bet View Controller" id="Wnx-fl-KUO" customClass="YourBetViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Dk-Qi-XWq"/>
                         <viewControllerLayoutGuide type="bottom" id="2Gc-fy-Ghv"/>
@@ -161,8 +161,51 @@
                     <view key="view" contentMode="scaleToFill" id="vB4-tW-Pqw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You vs. Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUc-wQ-jEn">
+                                <rect key="frame" x="20" y="90" width="440" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The bet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsc-w2-JEn">
+                                <rect key="frame" x="20" y="125" width="419" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uw-Kh-u6H">
+                                <rect key="frame" x="20" y="170" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMc-Kx-ol0">
+                                <rect key="frame" x="158" y="316" width="60" height="30"/>
+                                <state key="normal" title="I lost :(">
+                                    <color key="titleColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="userLostBet:" destination="Wnx-fl-KUO" eventType="touchUpInside" id="5DU-tx-WAz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8r-Xx-Tjc">
+                                <rect key="frame" x="388" y="316" width="46" height="30"/>
+                                <state key="normal" title="I won!">
+                                    <color key="titleColor" red="0.052017980329999998" green="0.72309695510000005" blue="0.083916578340000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="userWonBet:" destination="Wnx-fl-KUO" eventType="touchUpInside" id="wjR-2Y-xFK"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="betDescription" destination="Xsc-w2-JEn" id="H1C-bS-p8e"/>
+                        <outlet property="terms" destination="0Uw-Kh-u6H" id="GyO-Cm-c1P"/>
+                        <outlet property="usersInvolved" destination="HUc-wQ-jEn" id="LHP-pG-2mt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uA9-LI-Dt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -306,6 +349,25 @@
                                         <connections>
                                             <outlet property="friendRequestLabel" destination="yfG-S5-p4X" id="qLn-0P-ZgS"/>
                                             <segue destination="hQf-hl-8GK" kind="show" identifier="displayFriendRequest" id="n5Z-Cq-1mt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultRequestCell" id="PKy-UR-lHs" customClass="ResultRequestTableViewCell" customModule="bet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="232" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PKy-UR-lHs" id="3Mj-EJ-Baf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8E3-D8-7Cj">
+                                                    <rect key="frame" x="8" y="24" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="usersInvolved" destination="8E3-D8-7Cj" id="HXu-ER-5ef"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -546,7 +608,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6" customClass="SearchTextField" customModule="SearchTextField">
                                 <rect key="frame" x="288" y="105" width="240" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -698,6 +760,26 @@
                     <view key="view" contentMode="scaleToFill" id="gwe-Q8-BH6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The bet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxR-DB-DgR">
+                                <rect key="frame" x="20" y="164" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend vs. Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHF-zd-3a3">
+                                <rect key="frame" x="20" y="121" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJI-Ye-KHK">
+                                <rect key="frame" x="20" y="207" width="53" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -707,6 +789,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5ts-2M-lsM"/>
+        <segue reference="8e0-kw-2OT"/>
     </inferredMetricsTieBreakers>
 </document>

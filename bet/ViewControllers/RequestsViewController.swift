@@ -1,3 +1,4 @@
+
 //
 //  RequestsViewController.swift
 //  bet
@@ -22,6 +23,7 @@ class RequestsViewController: UIViewController {
         }
     }
     var friendRequests: [FriendRequest] = []
+    var resultRequests: [Result] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,23 @@ class RequestsViewController: UIViewController {
             for request in self.friendRequests
             {
                 self.allRequests.append(request)
+            }
+            self.tableView.reloadData()
+        }
+        
+        let resultQuery = Result.query()
+        resultQuery!.whereKey("toUser", equalTo: PFUser.currentUser()!)
+        resultQuery!.whereKey("rejected", equalTo: false)
+        resultQuery!.whereKey("accepted", equalTo: false)
+        resultQuery!.includeKey("toUser")
+        resultQuery!.includeKey("fromUser")
+        resultQuery!.includeKey("winner")
+        resultQuery!.includeKey("loser")
+        resultQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+            self.resultRequests = result as? [Result] ?? []
+            for resultRequest in self.resultRequests
+            {
+                self.allRequests.append(resultRequest)
             }
             self.tableView.reloadData()
         }
@@ -95,7 +114,7 @@ class RequestsViewController: UIViewController {
                 let noLongerRequest = displayBetRequestViewController.bet! as PFObject!
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
             else if identifier == "Accept"
             {
@@ -106,7 +125,7 @@ class RequestsViewController: UIViewController {
                 displayBetRequestViewController.bet!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
             else if identifier == "acceptFriendRequest"
             {
@@ -115,12 +134,9 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.accepted = true
                 displayFriendRequestController.friendRequest!.rejected = false
                 displayFriendRequestController.friendRequest!.saveInBackground()
-                //var user: BetUser = PFUser.currentUser()!
                 let friendship = Friendships()
                 friendship.friends.addObject(displayFriendRequestController.friendRequest!.creatingUser!)
                 friendship.user = PFUser.currentUser()!
-                //PFUser.currentUser()!.setObject(friendship, forKey: "friends")
-                //PFUser.currentUser()!.saveInBackground()
                 friendship.saveInBackground()
                 let backFriendship = Friendships()
                 backFriendship.friends.addObject(PFUser.currentUser()!)
@@ -129,8 +145,9 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
+                self.tableView.reloadData()
                 
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
             else if identifier == "rejectFriendRequest"
             {
@@ -141,7 +158,7 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
         
@@ -174,11 +191,18 @@ extension RequestsViewController: UITableViewDataSource
             cell.friendRequestLabel.text = "Friend request from \(request.creatingUser!.username!)"
             return cell
         }
-        else
+        else if fromRequest is Bet
         {
             let request = fromRequest as! Bet
             let cell = tableView.dequeueReusableCellWithIdentifier("RequestCell", forIndexPath: indexPath) as! RequestTableViewCell
             cell.requestType.text = "Bet request from \(request.creatingUser!.username!)"
+            return cell
+        }
+        else
+        {
+            let request = fromRequest as! Result
+            let cell = tableView.dequeueReusableCellWithIdentifier("ResultRequestCell", forIndexPath: indexPath) as! ResultRequestTableViewCell
+            cell.usersInvolved.text = "Result from \(request.fromUser!.username!) needs approval"
             return cell
         }
         

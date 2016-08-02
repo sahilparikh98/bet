@@ -12,12 +12,13 @@ import SearchTextField
 
 class NewBetViewController: UIViewController {
 
-    @IBOutlet weak var userToBet: UITextField!
+    //MARK: Properties
     @IBOutlet weak var betDescription: UITextView!
     @IBOutlet weak var stakes: UITextField!
     @IBOutlet weak var userBeingBet: SearchTextField!
-    var users = [PFUser]()
+    var friends = [PFUser]()
     var opponentUser: PFUser?
+    var friendship: Friendships?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,9 +27,16 @@ class NewBetViewController: UIViewController {
         self.betDescription.layer.borderWidth = 1
         self.betDescription.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.betDescription.layer.cornerRadius = 8
-        let query = PFUser.query()!
-        query.findObjectsInBackgroundWithBlock { (result: [PFObject]?, error: NSError?) -> Void in
-            self.users = result as? [PFUser] ?? []
+        let friendsQuery = Friendships.query()
+        friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
+        friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
+            self.friendship = result as? Friendships ?? nil
+            let getFriends = self.friendship!.friends.query()
+            getFriends.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                self.friends = result as? [PFUser] ?? []
+                let friendsUsernames = self.friends.map { $0.username! }
+                self.userBeingBet.filterStrings(friendsUsernames)
+            }
         }
         
         
@@ -62,12 +70,12 @@ class NewBetViewController: UIViewController {
                 print("save")
                 let request = PFObject(className: "BetRequest")
                 request["fromUser"] = PFUser.currentUser()!
-                for user in users
+                for friend in friends
                 {
                     //print("\(user.username!)")
-                    if user.username! == self.userToBet.text
+                    if friend.username! == self.userBeingBet.text
                     {
-                        opponentUser = user;
+                        opponentUser = friend
                     }
                 }
                 print("\(opponentUser?.username)")
@@ -110,5 +118,7 @@ class NewBetViewController: UIViewController {
         }
     }
 
-
+    //MARK: Actions
+    
+    
 }

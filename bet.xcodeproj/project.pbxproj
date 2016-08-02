@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1816F7981D4FC1D400854622 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816F7971D4FC1D400854622 /* Result.swift */; };
+		1816F79A1D4FCDFF00854622 /* YourBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816F7991D4FCDFF00854622 /* YourBetViewController.swift */; };
+		1816F79C1D5015E100854622 /* ResultRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816F79B1D5015E100854622 /* ResultRequestTableViewCell.swift */; };
 		181C10051D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */; };
 		184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184188971D42847900DCDD09 /* NewBetViewController.swift */; };
 		1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889C1D42B30500DCDD09 /* ParseHelper.swift */; };
@@ -38,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1816F7971D4FC1D400854622 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		1816F7991D4FCDFF00854622 /* YourBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourBetViewController.swift; sourceTree = "<group>"; };
+		1816F79B1D5015E100854622 /* ResultRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultRequestTableViewCell.swift; sourceTree = "<group>"; };
 		181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBetsTableViewCell.swift; sourceTree = "<group>"; };
 		184188971D42847900DCDD09 /* NewBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBetViewController.swift; sourceTree = "<group>"; };
 		1841889C1D42B30500DCDD09 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 				18DBAB591D46D96300CC03C3 /* Request.swift */,
 				18763F351D4958810014ED6E /* User.swift */,
 				18763F371D4977F60014ED6E /* Friendships.swift */,
+				1816F7971D4FC1D400854622 /* Result.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 				189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */,
 				189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */,
 				181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */,
+				1816F79B1D5015E100854622 /* ResultRequestTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 				18DBAB521D46836400CC03C3 /* RequestsViewController.swift */,
 				188196181D4802B20054548F /* DisplayBetRequestViewController.swift */,
 				18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */,
+				1816F7991D4FCDFF00854622 /* YourBetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,8 +330,10 @@
 				184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */,
 				18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */,
 				18763F381D4977F60014ED6E /* Friendships.swift in Sources */,
+				1816F79C1D5015E100854622 /* ResultRequestTableViewCell.swift in Sources */,
 				18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */,
 				18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */,
+				1816F7981D4FC1D400854622 /* Result.swift in Sources */,
 				18EAAB851D41782600E37808 /* FriendsSearchViewController.swift in Sources */,
 				181C10051D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift in Sources */,
 				189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */,
@@ -341,6 +352,7 @@
 				18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */,
 				1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */,
 				18763F361D4958810014ED6E /* User.swift in Sources */,
+				1816F79A1D4FCDFF00854622 /* YourBetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

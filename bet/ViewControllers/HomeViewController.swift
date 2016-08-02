@@ -11,20 +11,27 @@ import Parse
 import Bond
 class HomeViewController: UIViewController {
 
+    //MARK: IB Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: Properties
+    
     var userBets: [Bet] = [] {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     var friendBets: [Bet] = []
     var friendship: Friendships?
     var friends: [PFUser] = [] {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
+    var getFriends: PFQuery?
     var bets: [Bet] = []
+    
+    //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,12 +51,15 @@ class HomeViewController: UIViewController {
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
         friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
+            self.getFriends = self.friendship!.friends.query()
+            self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                self.friends = result as? [PFUser] ?? []
+            }
         }
-        let getFriends = friendship!.friends.query()
-        getFriends.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
             self.tableView.reloadData()
-        }
+        }*/
         let betsFromFriends = Bet.query()
         betsFromFriends!.whereKey("accepted", equalTo: true)
         betsFromFriends!.whereKey("rejected", equalTo: false)
@@ -77,10 +87,6 @@ class HomeViewController: UIViewController {
             
             self.tableView.reloadData()
         }
-        print("Bets after loading the friend's bets: \(self.userBets.count)")
-        //betsFromFriends!.whereKey("creatingUser", matchesKey: )
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +106,19 @@ class HomeViewController: UIViewController {
             if identifier == "createBet"
             {
                 print("creating bet")
+            }
+            else if identifier == "displayYourBet"
+            {
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let bet = userBets[indexPath.row]
+                let yourBetViewController = segue.destinationViewController as! YourBetViewController
+                yourBetViewController.bet = bet
+            }
+            else if identifier == "displayFriendBet"
+            {
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let bet = userBets[indexPath.row]
+                
             }
         }
         // Get the new view controller using segue.destinationViewController.
@@ -129,7 +148,6 @@ extension HomeViewController: UITableViewDataSource {
             cell.usersInvolved.text = "You vs. \(bet.receivingUser!.username!) this is a my bet"
             cell.betDescription.text = "\(bet.betDescription!)"
             cell.timestamp.text = bet.createdAt!.convertToString()
-            
             return cell
         }
         else
