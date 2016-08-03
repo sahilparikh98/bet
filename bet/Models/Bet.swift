@@ -23,6 +23,7 @@ class Bet : PFObject, PFSubclassing, Request{
     @NSManaged var rejected: NSNumber?
     @NSManaged var fromUser: PFUser?
     @NSManaged var toUser: PFUser?
+    @NSManaged var resultSubmitted: NSNumber?
     
     
     

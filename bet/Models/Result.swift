@@ -18,6 +18,7 @@ class Result: PFObject, PFSubclassing {
     @NSManaged var rejected: NSNumber?
     @NSManaged var fromUser: PFUser?
     @NSManaged var toUser: PFUser?
+    @NSManaged var conflict: NSNumber?
     
     //MARK: PFObject Required Methods
     

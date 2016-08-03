@@ -368,6 +368,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="usersInvolved" destination="8E3-D8-7Cj" id="HXu-ER-5ef"/>
+                                            <segue destination="187-KX-T0x" kind="show" identifier="displayResultRequest" id="VOS-jD-TQ6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -392,6 +393,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw9-H4-nY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1714" y="2136"/>
+        </scene>
+        <!--Result Request View Controller-->
+        <scene sceneID="3RB-H3-EGs">
+            <objects>
+                <viewController title="Result Request View Controller" id="187-KX-T0x" customClass="ResultRequestViewController" customModule="bet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vnB-50-6NN"/>
+                        <viewControllerLayoutGuide type="bottom" id="pYW-TF-m9P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hvm-kF-eX9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bet description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snn-7C-wb7">
+                                <rect key="frame" x="20" y="146" width="495" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdN-53-AAe">
+                                <rect key="frame" x="20" y="175" width="495" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend has won the bet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3U-XA-NNJ">
+                                <rect key="frame" x="20" y="117" width="495" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1S-UG-GsL">
+                                <rect key="frame" x="20" y="245" width="52" height="30"/>
+                                <state key="normal" title="Accept">
+                                    <color key="titleColor" red="0.052017980329999998" green="0.72309695510000005" blue="0.083916578340000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="userAcceptsResult:" destination="187-KX-T0x" eventType="touchUpInside" id="38S-HI-3EN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKk-HG-SdB">
+                                <rect key="frame" x="95" y="245" width="46" height="30"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="userRejectsResult:" destination="187-KX-T0x" eventType="touchUpInside" id="1KN-P1-NH6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Result" id="ZyF-pq-LZM">
+                        <barButtonItem key="backBarButtonItem" title="Requests" id="GsO-ES-rTj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="betDescription" destination="snn-7C-wb7" id="2JO-u6-jIc"/>
+                        <outlet property="terms" destination="wdN-53-AAe" id="I9l-dG-BH7"/>
+                        <outlet property="usersInvolved" destination="y3U-XA-NNJ" id="GJV-KT-ejZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DzO-kh-7bu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="2879"/>
         </scene>
         <!--Bet Request-->
         <scene sceneID="Xj3-XL-UyQ">

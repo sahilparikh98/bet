@@ -14,6 +14,7 @@
 		184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184188971D42847900DCDD09 /* NewBetViewController.swift */; };
 		1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889C1D42B30500DCDD09 /* ParseHelper.swift */; };
 		1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841889E1D42DDF700DCDD09 /* Bet.swift */; };
+		1866BD111D513D5B007B1BAF /* ResultRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866BD101D513D5B007B1BAF /* ResultRequestViewController.swift */; };
 		18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */; };
 		18763F361D4958810014ED6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F351D4958810014ED6E /* User.swift */; };
 		18763F381D4977F60014ED6E /* Friendships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F371D4977F60014ED6E /* Friendships.swift */; };
@@ -48,6 +49,7 @@
 		184188971D42847900DCDD09 /* NewBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBetViewController.swift; sourceTree = "<group>"; };
 		1841889C1D42B30500DCDD09 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		1841889E1D42DDF700DCDD09 /* Bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
+		1866BD101D513D5B007B1BAF /* ResultRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultRequestViewController.swift; sourceTree = "<group>"; };
 		18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayFriendRequestViewController.swift; sourceTree = "<group>"; };
 		18763F351D4958810014ED6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		18763F371D4977F60014ED6E /* Friendships.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendships.swift; sourceTree = "<group>"; };
@@ -116,11 +118,11 @@
 			children = (
 				18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */,
 				188196161D47C8560054548F /* RequestTableViewCell.swift */,
+				1816F79B1D5015E100854622 /* ResultRequestTableViewCell.swift */,
 				1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */,
 				189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */,
 				189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */,
 				181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */,
-				1816F79B1D5015E100854622 /* ResultRequestTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +184,7 @@
 				188196181D4802B20054548F /* DisplayBetRequestViewController.swift */,
 				18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */,
 				1816F7991D4FCDFF00854622 /* YourBetViewController.swift */,
+				1866BD101D513D5B007B1BAF /* ResultRequestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 				TargetAttributes = {
 					18EAAB681D41627300E37808 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = CZ34QSP77C;
+						DevelopmentTeam = 4MP42SJRPD;
 					};
 				};
 			};
@@ -347,6 +350,7 @@
 				1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */,
 				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
 				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
+				1866BD111D513D5B007B1BAF /* ResultRequestViewController.swift in Sources */,
 				189CDB141D4ABCFC002403EE /* NSDate+convertToString.swift in Sources */,
 				18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */,
 				18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */,

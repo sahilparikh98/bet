@@ -19,7 +19,7 @@ class RequestsViewController: UIViewController {
     var allRequests: [PFObject] = []
         {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     var friendRequests: [FriendRequest] = []
