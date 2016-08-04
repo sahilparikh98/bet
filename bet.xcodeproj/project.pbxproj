@@ -24,6 +24,11 @@
 		189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */; };
 		189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */; };
 		189CDB141D4ABCFC002403EE /* NSDate+convertToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */; };
+		18A8DA161D52544C0074601A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA151D52544C0074601A /* FriendTableViewCell.swift */; };
+		18A8DA181D525E2F0074601A /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA171D525E2F0074601A /* FriendsViewController.swift */; };
+		18A8DA1A1D5281E30074601A /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */; };
+		18A8DA1C1D52A0A70074601A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */; };
+		18C70CD41D53AD9000BF74DD /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C70CD31D53AD9000BF74DD /* ParseLoginHelper.swift */; };
 		18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB521D46836400CC03C3 /* RequestsViewController.swift */; };
 		18DBAB551D4683F600CC03C3 /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB541D4683F600CC03C3 /* FriendRequest.swift */; };
 		18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */; };
@@ -37,7 +42,6 @@
 		18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB861D41785700E37808 /* MyBetsViewController.swift */; };
 		18EAAB891D41787E00E37808 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB881D41787E00E37808 /* MyProfileViewController.swift */; };
 		18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */; };
-		18EAAB8D1D41790400E37808 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB8C1D41790400E37808 /* FriendsTableViewController.swift */; };
 		D0B9193A3EE5A9043E271865 /* Pods_bet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424096A0330E94867596D7B0 /* Pods_bet.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +63,11 @@
 		189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetTableViewCell.swift; sourceTree = "<group>"; };
 		189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendBetTableViewCell.swift; sourceTree = "<group>"; };
 		189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+convertToString.swift"; sourceTree = "<group>"; };
+		18A8DA151D52544C0074601A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		18A8DA171D525E2F0074601A /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
+		18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		18C70CD31D53AD9000BF74DD /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		18DBAB521D46836400CC03C3 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
 		18DBAB541D4683F600CC03C3 /* FriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		18DBAB571D46B7EC00CC03C3 /* BetRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,7 +83,6 @@
 		18EAAB861D41785700E37808 /* MyBetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetsViewController.swift; sourceTree = "<group>"; };
 		18EAAB881D41787E00E37808 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		18EAAB8C1D41790400E37808 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		424096A0330E94867596D7B0 /* Pods_bet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		779321BF1B43C2A2734D20F7 /* Pods-bet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bet.release.xcconfig"; path = "Pods/Target Support Files/Pods-bet/Pods-bet.release.xcconfig"; sourceTree = "<group>"; };
 		EFBCEF49F8E9BE2BC95F2412 /* Pods-bet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bet/Pods-bet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +131,8 @@
 				189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */,
 				189CDB101D4A8376002403EE /* FriendBetTableViewCell.swift */,
 				181C10041D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift */,
+				18A8DA151D52544C0074601A /* FriendTableViewCell.swift */,
+				18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				1841889C1D42B30500DCDD09 /* ParseHelper.swift */,
+				18C70CD31D53AD9000BF74DD /* ParseLoginHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -178,13 +189,14 @@
 				18EAAB861D41785700E37808 /* MyBetsViewController.swift */,
 				18EAAB881D41787E00E37808 /* MyProfileViewController.swift */,
 				18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */,
-				18EAAB8C1D41790400E37808 /* FriendsTableViewController.swift */,
 				184188971D42847900DCDD09 /* NewBetViewController.swift */,
 				18DBAB521D46836400CC03C3 /* RequestsViewController.swift */,
 				188196181D4802B20054548F /* DisplayBetRequestViewController.swift */,
 				18763F331D4917330014ED6E /* DisplayFriendRequestViewController.swift */,
 				1816F7991D4FCDFF00854622 /* YourBetViewController.swift */,
 				1866BD101D513D5B007B1BAF /* ResultRequestViewController.swift */,
+				18A8DA171D525E2F0074601A /* FriendsViewController.swift */,
+				18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -334,19 +346,22 @@
 				18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */,
 				18763F381D4977F60014ED6E /* Friendships.swift in Sources */,
 				1816F79C1D5015E100854622 /* ResultRequestTableViewCell.swift in Sources */,
+				18C70CD41D53AD9000BF74DD /* ParseLoginHelper.swift in Sources */,
 				18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */,
 				18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */,
 				1816F7981D4FC1D400854622 /* Result.swift in Sources */,
 				18EAAB851D41782600E37808 /* FriendsSearchViewController.swift in Sources */,
 				181C10051D4BC67E000EFD17 /* PersonalBetsTableViewCell.swift in Sources */,
 				189CDB111D4A8376002403EE /* FriendBetTableViewCell.swift in Sources */,
+				18A8DA1A1D5281E30074601A /* AddFriendTableViewCell.swift in Sources */,
 				1841889F1D42DDF700DCDD09 /* Bet.swift in Sources */,
 				189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */,
 				18DBAB551D4683F600CC03C3 /* FriendRequest.swift in Sources */,
 				18EAAB6D1D41627400E37808 /* AppDelegate.swift in Sources */,
 				188196191D4802B20054548F /* DisplayBetRequestViewController.swift in Sources */,
-				18EAAB8D1D41790400E37808 /* FriendsTableViewController.swift in Sources */,
 				18EAAB811D41747300E37808 /* HomeViewController.swift in Sources */,
+				18A8DA181D525E2F0074601A /* FriendsViewController.swift in Sources */,
+				18A8DA1C1D52A0A70074601A /* AddFriendsViewController.swift in Sources */,
 				1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */,
 				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
 				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
@@ -357,6 +372,7 @@
 				1841889D1D42B30500DCDD09 /* ParseHelper.swift in Sources */,
 				18763F361D4958810014ED6E /* User.swift in Sources */,
 				1816F79A1D4FCDFF00854622 /* YourBetViewController.swift in Sources */,
+				18A8DA161D52544C0074601A /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

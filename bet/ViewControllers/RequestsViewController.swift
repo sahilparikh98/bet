@@ -93,9 +93,14 @@ class RequestsViewController: UIViewController {
                 let friendRequest = allRequests[indexPath.row] as! FriendRequest
                 let displayFriendRequestViewController = segue.destinationViewController as! DisplayFriendRequestViewController
                 displayFriendRequestViewController.friendRequest = friendRequest
-                
             }
-            
+            else if identifier == "displayResultRequest"
+            {
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let result = self.allRequests[indexPath.row] as! Result
+                let controller = segue.destinationViewController as! ResultRequestViewController
+                controller.result = result
+            }
         }
         
         // Pass the selected object to the new view controller.
@@ -159,6 +164,18 @@ class RequestsViewController: UIViewController {
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
                 self.tableView.reloadData()
+            }
+            else if identifier == "acceptResultRequest"
+            {
+                let controller = segue.sourceViewController as! ResultRequestViewController
+                let noLongerRequest = controller.result! as PFObject
+                controller.result!.accepted = true
+                controller.result!.rejected = false
+                controller.result!.toBet!.finished = true
+                controller.result!.saveInBackground()
+                controller.result!.toBet!.saveInBackground()
+                self.allRequests.filter { $0 !== noLongerRequest }
+                
             }
         }
         

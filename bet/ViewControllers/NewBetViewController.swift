@@ -27,7 +27,13 @@ class NewBetViewController: UIViewController {
         self.betDescription.layer.borderWidth = 1
         self.betDescription.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.betDescription.layer.cornerRadius = 8
-        let friendsQuery = Friendships.query()
+        ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in
+            self.friends = result as? [PFUser] ?? []
+            let friendsUsernames = self.friends.map { $0.username! }
+            self.userBeingBet.filterStrings(friendsUsernames)
+        }
+        
+        /*let friendsQuery = Friendships.query()
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
         friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
@@ -37,7 +43,7 @@ class NewBetViewController: UIViewController {
                 let friendsUsernames = self.friends.map { $0.username! }
                 self.userBeingBet.filterStrings(friendsUsernames)
             }
-        }
+        }*/
         
         
         
