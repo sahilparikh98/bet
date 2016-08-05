@@ -25,6 +25,9 @@ class BetLoginViewController: PFLogInViewController {
         self.logInView!.passwordForgottenButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.viewsToAnimate = [self.logInView!.usernameField, self.logInView!.passwordField, self.logInView!.logInButton, self.logInView!.passwordForgottenButton, self.logInView!.facebookButton, self.logInView!.signUpButton, self.logInView!.logo]
         
+        self.emailAsUsername = false
+        self.signUpController = BetSignUpViewController()
+        self.signUpController?.emailAsUsername = self.emailAsUsername
         
         // Do any additional setup after loading the view.
     }
