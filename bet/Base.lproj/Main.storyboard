@@ -282,7 +282,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="friendLabel" destination="ozt-P7-hNL" id="IYu-Ug-6jD"/>
-                                            <segue destination="z3N-ZE-be2" kind="show" id="IkW-lm-BzV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -299,7 +298,13 @@
                             <constraint firstAttribute="trailing" secondItem="cFn-qZ-eRy" secondAttribute="trailing" id="XGI-Qo-X6N"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Friends" id="t65-lA-xq4"/>
+                    <navigationItem key="navigationItem" title="Friends" id="t65-lA-xq4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NMd-Qd-GBD">
+                            <connections>
+                                <segue destination="z3N-ZE-be2" kind="show" id="41F-2f-p0Z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="cFn-qZ-eRy" id="YUC-UA-a95"/>
                     </connections>
@@ -334,7 +339,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Friends" id="jVt-gP-Nsk"/>
+                    <navigationItem key="navigationItem" title="Add Friends" id="jVt-gP-Nsk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sg5-cg-d17"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="kwe-aE-Ipa" id="W9q-qb-VSS"/>
                         <outlet property="friendToAdd" destination="Ynk-X0-B5S" id="TJa-td-8iA"/>
@@ -342,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWJ-tz-k4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2100" y="1553"/>
+            <point key="canvasLocation" x="2193" y="1558"/>
         </scene>
         <!--Friend Search View Controller-->
         <scene sceneID="QA2-A7-YPP">
@@ -671,43 +678,48 @@
                     <view key="view" contentMode="scaleToFill" id="m1V-3u-slH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qa6-xl-Jzc">
+                                <rect key="frame" x="20" y="85" width="240" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opd-Pi-5Aj">
+                                <rect key="frame" x="310" y="131" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Losses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GS-7D-aze">
+                                <rect key="frame" x="310" y="181" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjX-Ji-Ayk">
+                                <rect key="frame" x="310" y="85" width="244" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="mHr-1Z-M8T">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="k34-gi-NN5">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="k34-gi-NN5">
+                            <color key="tintColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="TFX-uh-loU" kind="show" id="iXS-25-YrC"/>
+                                <action selector="logOutUser:" destination="qFc-MR-L4P" id="2qD-5T-cul"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="lossesLabel" destination="2GS-7D-aze" id="y30-4V-pOe"/>
+                        <outlet property="nameLabel" destination="RjX-Ji-Ayk" id="91R-DT-ruJ"/>
+                        <outlet property="winsLabel" destination="opd-Pi-5Aj" id="9ER-dY-js0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJ0-sf-EZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1702" y="-583"/>
-        </scene>
-        <!--Edit Profile-->
-        <scene sceneID="C7x-wF-1dz">
-            <objects>
-                <viewController id="TFX-uh-loU" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="chf-Iz-jej"/>
-                        <viewControllerLayoutGuide type="bottom" id="e62-WD-1Hw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="szc-6b-2nk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Profile" id="SiJ-73-WB3">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="K6G-tb-eZ7">
-                            <color key="tintColor" red="1" green="0.093669809471172427" blue="0.048010594725107048" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jrW-HP-TFs"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mxb-MS-pyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2408" y="-583"/>
         </scene>
         <!--My Bets View Controller-->
         <scene sceneID="7nf-Pq-H7y">

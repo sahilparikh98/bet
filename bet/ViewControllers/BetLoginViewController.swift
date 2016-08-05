@@ -42,24 +42,33 @@ class BetLoginViewController: PFLogInViewController {
         logInView!.logo!.sizeToFit()
         let logoFrame = logInView!.logo!.frame
         self.logInView!.logo!.frame = CGRectMake(logoFrame.origin.x, logInView!.usernameField!.frame.origin.y - logoFrame.height - 16, logInView!.frame.width,  logoFrame.height)
-        self.viewsFinalYPosition = [CGFloat]();
-        for viewToAnimate in viewsToAnimate {
+       /* self.viewsFinalYPosition = [CGFloat]()
+        if self.viewsToAnimate == nil
+        {
+            viewDidLoad()
+            print("views to animate is nil")
+        }
+        for viewToAnimate in self.viewsToAnimate {
+            if viewToAnimate == nil
+            {
+                print("Current frame in views did layout subviews is nil")
+            }
             let currentFrame = viewToAnimate.frame
             viewsFinalYPosition.append(currentFrame.origin.y)
             viewToAnimate.frame = CGRectMake(currentFrame.origin.x, self.view.frame.height + currentFrame.origin.y, currentFrame.width, currentFrame.height)
-        }
+        }*/
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if self.viewsFinalYPosition.count == self.viewsToAnimate.count {
+        /*if self.viewsFinalYPosition.count == self.viewsToAnimate.count {
             UIView.animateWithDuration(1, delay: 0.0, options: .CurveEaseInOut,  animations: { () -> Void in
                 for viewToAnimate in self.viewsToAnimate {
                     let currentFrame = viewToAnimate.frame
                     viewToAnimate.frame = CGRectMake(currentFrame.origin.x, self.viewsFinalYPosition.removeAtIndex(0), currentFrame.width, currentFrame.height)
                 }
                 }, completion: nil)
-        }
+        }*/
     }
     /*
     // MARK: - Navigation

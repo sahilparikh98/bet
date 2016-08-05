@@ -11,7 +11,11 @@ import Parse
 class FriendsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var friends: [PFUser] = []
+    var friends: [PFUser] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in

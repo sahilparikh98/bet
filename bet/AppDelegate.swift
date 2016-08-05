@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginViewController = BetLoginViewController()
             loginViewController.fields = [.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten, .Facebook]
             loginViewController.delegate = parseLoginHelper
-            loginViewController.emailAsUsername = true
+            loginViewController.emailAsUsername = false
             
             loginViewController.signUpController?.delegate = parseLoginHelper
             loginViewController.signUpController?.emailAsUsername = loginViewController.emailAsUsername

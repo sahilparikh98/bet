@@ -7,12 +7,24 @@
 //
 
 import UIKit
-
+import Parse
 class MyProfileViewController: UIViewController {
-
+    //MARK: IB outlets
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var winsLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var lossesLabel: UILabel!
+    var parseLoginHelper: ParseLoginHelper!
+    //MARK: Properties
+    
+    //MARK: UI Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.nameLabel.text = PFUser.currentUser()!.username!
+        self.winsLabel.text = "Wins: 0"
+        self.lossesLabel.text = "Losses: 0"
+        
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +34,55 @@ class MyProfileViewController: UIViewController {
     }
     
 
+    @IBAction func logOutUser(sender: AnyObject) {
+        
+        let alert = UIAlertController(title: "Confirm log out", message: "Are you sure you want to log out", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Log out", style: .Destructive, handler: { (action: UIAlertAction) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                self.loginSetup()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction) in 
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        }))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func loginSetup()
+    {
+            
+        parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
+                // Initialize the ParseLoginHelper with a callback
+            if let error = error {
+                    // 1
+                ErrorHandling.defaultErrorHandler(error)
+            } else  if let _ = user {
+                    // if login was successful, display the TabBarController
+                    // 2
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+                    // 3
+                self.presentViewController(tabBarController, animated:true, completion:nil)
+                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+                appDelegate?.window?.rootViewController = tabBarController
+            }
+        }
+        let loginViewController = BetLoginViewController()
+        loginViewController.fields = [.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten, .Facebook]
+        loginViewController.delegate = parseLoginHelper
+        loginViewController.emailAsUsername = false
+        
+        loginViewController.signUpController?.delegate = parseLoginHelper
+        loginViewController.signUpController?.emailAsUsername = loginViewController.emailAsUsername
+        self.presentViewController(loginViewController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 

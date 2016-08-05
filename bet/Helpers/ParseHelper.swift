@@ -59,8 +59,18 @@ public class ParseHelper
         query!.whereKey("user", equalTo: PFUser.currentUser()!)
         query!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
             let friendship = result as? Friendships ?? nil
-            let getFriends = friendship!.friends.query()
-            getFriends.findObjectsInBackgroundWithBlock(completionBlock)
+            if let friendship = friendship
+            {
+                let getFriends = friendship.friends.query()
+                getFriends.findObjectsInBackgroundWithBlock(completionBlock)
+            }
+            else
+            {
+                let newFriendship = Friendships()
+                newFriendship.user = PFUser.currentUser()
+                let getFriends = newFriendship.friends.query()
+                getFriends.findObjectsInBackgroundWithBlock(completionBlock)
+            }
         }
     }
     
