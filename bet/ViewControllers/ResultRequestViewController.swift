@@ -72,6 +72,7 @@ class ResultRequestViewController: UIViewController {
                 rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
                     rejectAlert.dismissViewControllerAnimated(true, completion: nil)
                 }))
+                presentViewController(rejectAlert, animated: true, completion: nil)
             }
         }
     }

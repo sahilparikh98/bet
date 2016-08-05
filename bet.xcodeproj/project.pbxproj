@@ -29,6 +29,7 @@
 		18A8DA1A1D5281E30074601A /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */; };
 		18A8DA1C1D52A0A70074601A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */; };
 		18B4D23A1D54534A00E2D1D8 /* BetLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4D2391D54534A00E2D1D8 /* BetLoginViewController.swift */; };
+		18C52ED81D54FCB50076F826 /* BetSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C52ED71D54FCB50076F826 /* BetSignUpViewController.swift */; };
 		18C70CD41D53AD9000BF74DD /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C70CD31D53AD9000BF74DD /* ParseLoginHelper.swift */; };
 		18C70CD61D53D45300BF74DD /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C70CD51D53D45300BF74DD /* ErrorHandling.swift */; };
 		18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBAB521D46836400CC03C3 /* RequestsViewController.swift */; };
@@ -70,6 +71,7 @@
 		18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		18B4D2391D54534A00E2D1D8 /* BetLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetLoginViewController.swift; sourceTree = "<group>"; };
+		18C52ED71D54FCB50076F826 /* BetSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetSignUpViewController.swift; sourceTree = "<group>"; };
 		18C70CD31D53AD9000BF74DD /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		18C70CD51D53D45300BF74DD /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		18DBAB521D46836400CC03C3 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				18A8DA171D525E2F0074601A /* FriendsViewController.swift */,
 				18A8DA1B1D52A0A70074601A /* AddFriendsViewController.swift */,
 				18B4D2391D54534A00E2D1D8 /* BetLoginViewController.swift */,
+				18C52ED71D54FCB50076F826 /* BetSignUpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				18B4D23A1D54534A00E2D1D8 /* BetLoginViewController.swift in Sources */,
 				18EAAB891D41787E00E37808 /* MyProfileViewController.swift in Sources */,
 				184188981D42847900DCDD09 /* NewBetViewController.swift in Sources */,
+				18C52ED81D54FCB50076F826 /* BetSignUpViewController.swift in Sources */,
 				18DBAB531D46836400CC03C3 /* RequestsViewController.swift in Sources */,
 				18763F381D4977F60014ED6E /* Friendships.swift in Sources */,
 				1816F79C1D5015E100854622 /* ResultRequestTableViewCell.swift in Sources */,
