@@ -29,6 +29,19 @@ public class ParseHelper
         query!.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
+    static func getUserBets(completionBlock: PFQueryArrayResultBlock)
+    {
+        let userQuery = Bet.query()
+        userQuery!.whereKey("creatingUser", equalTo: PFUser.currentUser()!)
+        userQuery!.whereKey("finished", equalTo: false)
+        userQuery!.whereKey("accepted", equalTo: true)
+        userQuery!.whereKey("rejected", equalTo: false)
+        userQuery!.includeKey("creatingUser")
+        userQuery!.includeKey("receivingUser")
+        userQuery!.findObjectsInBackgroundWithBlock(completionBlock)
+        
+    }
+    
     static func getUserFriendRequests(completionBlock: PFQueryArrayResultBlock)
     {
         let friendRequestQuery = FriendRequest.query()
@@ -136,6 +149,10 @@ public class ParseHelper
         query.getFirstObjectInBackgroundWithBlock(completionBlock)
     }
     
+    static func getUserFriendshipObject(completionBlock: PFObjectResultBlock)
+    {
+        
+    }
     
     
     

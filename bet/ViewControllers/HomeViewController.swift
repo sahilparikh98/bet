@@ -35,14 +35,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let userQuery = Bet.query()
-        userQuery!.whereKey("creatingUser", equalTo: PFUser.currentUser()!)
-        userQuery!.whereKey("finished", equalTo: false)
-        userQuery!.whereKey("accepted", equalTo: true)
-        userQuery!.whereKey("rejected", equalTo: false)
-        userQuery!.includeKey("creatingUser")
-        userQuery!.includeKey("receivingUser")
-        userQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+        ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
             self.tableView.reloadData()
         }
@@ -51,9 +44,39 @@ class HomeViewController: UIViewController {
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
         friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
-            self.getFriends = self.friendship!.friends.query()
-            self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-                self.friends = result as? [PFUser] ?? []
+            if self.friendship != nil
+            {
+                self.getFriends = self.friendship!.friends.query()
+                self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                    self.friends = result as? [PFUser] ?? []
+                    let betsFromFriends = Bet.query()
+                    betsFromFriends!.whereKey("accepted", equalTo: true)
+                    betsFromFriends!.whereKey("rejected", equalTo: false)
+                    betsFromFriends!.whereKey("finished", equalTo: false)
+                    betsFromFriends!.includeKey("creatingUser")
+                    betsFromFriends!.includeKey("receivingUser")
+                    betsFromFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                        self.bets = result as? [Bet] ?? []
+                        print("\(self.bets.count)")
+                        for bet in self.bets
+                        {
+                            for friend in self.friends
+                            {
+                                if friend.username! == bet.creatingUser!.username!
+                                {
+                                    self.userBets.append(bet)
+                                    print("the bet created by \(friend.username!) was added")
+                                }
+                                else
+                                {
+                                    print("the bet was not added")
+                                }
+                            }
+                        }
+                        
+                        self.tableView.reloadData()
+                    }
+                }
             }
         }
         /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
