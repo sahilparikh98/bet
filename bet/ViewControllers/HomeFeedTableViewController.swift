@@ -69,16 +69,12 @@ class HomeFeedTableViewController: UITableViewController {
          self.friends = result as? [PFUser] ?? []
          self.tableView.reloadData()
          }*/
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.tableView.reloadData()
+        }
         
     }
-    override func viewDidLayoutSubviews() {
-        self
-    }
     
-    func cardSetup()
-    {
-    
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,24 +84,76 @@ class HomeFeedTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
         
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.userBets.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let bet = userBets[indexPath.row]
+        if bet.creatingUser!.username! == PFUser.currentUser()!.username!
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
+            cell.receivingUser.text = bet.receivingUser!.username!
+            let image = ParseHelper.getProfilePicture(bet.receivingUser!)
+            cell.receivingUserProfilePic.image = image
+            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+            cell.yourProfilePic.image = image
+            return cell
+        }
+        else if bet.receivingUser!.username! == PFUser.currentUser()!.username!
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
+            cell.receivingUser.text = bet.creatingUser!.username!
+            //image setup
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! HomeFeedTableViewCell
+            cell.creatingUserLabel.text = bet.creatingUser!.username!
+            cell.receivingUserLabel.text = bet.receivingUser!.username!
+            //image setup
+            return cell
+        }
     }
-    */
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        
+        if let identifier = segue.identifier
+        {
+            if identifier == "createBet"
+            {
+                print("creatingBet")
+            }
+            else if identifier == "displayFriendBet"
+            {
+                let indexPath = tableView.indexPathForSelectedRow!
+                let bet = self.userBets[indexPath.row]
+                let controller = segue.destinationViewController as! FriendBetViewController
+                controller.bet = bet
+            }
+            else if identifier == "displayYourBet"
+            {
+                let indexPath = tableView.indexPathForSelectedRow!
+                let bet = self.userBets[indexPath.row]
+                let controller = segue.destinationViewController as! YourBetViewController
+                controller.bet = bet
+            }
+        }
+        // Pass the selected object to the new view controller.
+    }
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -142,14 +190,7 @@ class HomeFeedTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
 
 }

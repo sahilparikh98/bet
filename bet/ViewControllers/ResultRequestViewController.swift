@@ -11,14 +11,26 @@ import Parse
 
 class ResultRequestViewController: UIViewController {
 
-    @IBOutlet weak var terms: UILabel!
-    @IBOutlet weak var betDescription: UILabel!
     @IBOutlet weak var usersInvolved: UILabel!
+    @IBOutlet weak var betDescription: UITextView!
     var bet: Bet?
     var result: Result?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let result = result
+        {
+            if result.fromUser!.username! == result.winner!.username!
+            {
+                self.usersInvolved.text = "\(result.fromUser!.username!) has won the bet!"
+            }
+            else
+            {
+                self.usersInvolved.text = "\(result.fromUser!.username!) has lost the bet!"
+            }
+            
+            self.betDescription.text = result.toBet!.betDescription!
+            
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -50,46 +62,52 @@ class ResultRequestViewController: UIViewController {
                 result.saveInBackground()
                 bet.saveInBackground()
                 
-                let pushQuery = PFInstallation.query()!
-                pushQuery.whereKey("user", equalTo: result.fromUser!)
-                let data = ["alert" : "The result of your bet with \(result.toUser!.username!) has been accepted!", "badge" : "Increment"]
-                let push = PFPush()
-                push.setQuery(pushQuery)
-                push.setData(data)
-                push.sendPushInBackground()
-                
             }
         }
     }
-    @IBAction func userRejectsResult(sender: UIButton)
-    {
-        if let bet = bet
+    
+//    @IBAction func userRejectsResult(sender: UIButton)
+//    {
+//        if let bet = bet
+//        {
+//            if let result = result
+//            {
+//                let rejectAlert = UIAlertController(title: "Are you sure you want to reject this result?", message: "This will cause a conflicted bet that will show up in your user profile.", preferredStyle: UIAlertControllerStyle.Alert)
+//                rejectAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler:{ (action: UIAlertAction) in
+//                    rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+//                    result.accepted = false
+//                    result.rejected = true
+//                    result.conflict = true
+//                    bet.finished = true
+//                    bet.saveInBackground()
+//                    result.saveInBackground()
+//                    
+//                }))
+//                rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
+//                    rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+//                }))
+//                presentViewController(rejectAlert, animated: true, completion: nil)
+//            }
+//        }
+//    }
+    @IBAction func userRejectsResult(sender: AnyObject) {
+        if result != nil
         {
-            if let result = result
-            {
-                let rejectAlert = UIAlertController(title: "Are you sure you want to reject this result?", message: "This will cause a conflicted bet that will show up in your user profile.", preferredStyle: UIAlertControllerStyle.Alert)
-                rejectAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler:{ (action: UIAlertAction) in
-                    rejectAlert.dismissViewControllerAnimated(true, completion: nil)
-                    result.accepted = false
-                    result.rejected = true
-                    result.conflict = true
-                    bet.finished = true
-                    bet.saveInBackground()
-                    result.saveInBackground()
-                    
-                    let pushQuery = PFInstallation.query()!
-                    pushQuery.whereKey("user", equalTo: result.fromUser!)
-                    let data = ["alert" : "\(result.toUser!.username!) has rejected your result.", "badge" : "Increment"]
-                    let push = PFPush()
-                    push.setQuery(pushQuery)
-                    push.setData(data)
-                    push.sendPushInBackground()
-                }))
-                rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
-                    rejectAlert.dismissViewControllerAnimated(true, completion: nil)
-                }))
-                presentViewController(rejectAlert, animated: true, completion: nil)
-            }
+            let rejectAlert = UIAlertController(title: "Are you sure you want to reject this result?", message: "This will cause a conflicted bet that will show up in your user profile.", preferredStyle: UIAlertControllerStyle.Alert)
+            rejectAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler:{ (action: UIAlertAction) in
+                rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+//                result.accepted = false
+//                result.rejected = true
+//                result.conflict = true
+//                bet.finished = true
+//                bet.saveInBackground()
+//                result.saveInBackground()
+                
+            }))
+            rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
+                rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            presentViewController(rejectAlert, animated: true, completion: nil)
         }
     }
     

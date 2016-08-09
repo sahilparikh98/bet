@@ -12,7 +12,7 @@ class MyProfileViewController: UIViewController {
     //MARK: IB outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
-    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var yourProfilePic: UIImageView!
     @IBOutlet weak var lossesLabel: UILabel!
     var parseLoginHelper: ParseLoginHelper!
     //MARK: Properties
@@ -22,8 +22,6 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameLabel.text = PFUser.currentUser()!.username!
-        self.winsLabel.text = "Wins: 0"
-        self.lossesLabel.text = "Losses: 0"
         
         // Do any additional setup after loading the view.
     }

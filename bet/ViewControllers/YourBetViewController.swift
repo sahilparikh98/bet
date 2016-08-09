@@ -10,9 +10,11 @@ import UIKit
 import Parse
 class YourBetViewController: UIViewController {
 
-    @IBOutlet weak var usersInvolved: UILabel!
-    @IBOutlet weak var betDescription: UILabel!
-    @IBOutlet weak var terms: UILabel!
+    @IBOutlet weak var yourProfilePic: UIImageView!
+    @IBOutlet weak var friendLabel: UILabel!
+    @IBOutlet weak var friendProfilePic: UIImageView!
+    @IBOutlet weak var betDescription: UITextView!
+
     var bet: Bet?
     var opponent: PFUser?
     override func viewDidLoad() {
@@ -24,15 +26,16 @@ class YourBetViewController: UIViewController {
             if bet.creatingUser!.username! == PFUser.currentUser()!.username
             {
                 self.opponent = self.bet!.receivingUser
-                self.usersInvolved!.text = "You vs. \(opponent!.username!)"
+                self.friendLabel.text = opponent!.username!
+                //image set up
             }
             else
             {
                 self.opponent = self.bet!.creatingUser!
-                self.usersInvolved!.text = "You vs. \(opponent!.username!)"
+                self.friendLabel.text = opponent!.username!
+                //image set up
             }
             self.betDescription.text = "\(self.bet!.betDescription!)"
-            self.terms.text = "\(self.bet!.stakes!)"
         }
         
         

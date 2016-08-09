@@ -74,6 +74,13 @@ class NewBetViewController: UIViewController {
             else if identifier == "Save"
             {
                 print("save")
+//                if self.userBeingBet.text!.isEmpty
+//                {
+//                    let alert = UIAlertController(title: "No user selected", message: "Please select a user.", preferredStyle: UIAlertControllerStyle.Alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
+//                        alert.dismissViewControllerAnimated(true, completion: nil)
+//                    }))
+//                }
                 let request = PFObject(className: "BetRequest")
                 request["fromUser"] = PFUser.currentUser()!
                 for friend in friends
@@ -92,19 +99,18 @@ class NewBetViewController: UIViewController {
                 bet.forUsers = PFUser.currentUser()!
                 bet.againstUsers = opponentUser!
                 bet.finished = false
-                bet.stakes = self.stakes.text
                 bet.accepted = NSNumber.init(bool: false)
                 bet.rejected = NSNumber.init(bool: false)
                 bet.fromUser = PFUser.currentUser()!
                 bet.toUser = opponentUser!
                 bet.saveInBackground()
                 
-                ParseHelper.sendBetRequestNotification(PFUser.currentUser()!, toUser: opponentUser!)
                 
                 
             }
         }
     }
+    
 
     //MARK: Actions
     

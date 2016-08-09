@@ -1,21 +1,19 @@
 //
-//  HomeFeedTableViewCell.swift
+//  ManageBetTableViewCell.swift
 //  bet
 //
-//  Created by Apple on 8/6/16.
+//  Created by Apple on 8/9/16.
 //  Copyright © 2016 Make School. All rights reserved.
 //
 
 import UIKit
 
-class HomeFeedTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var creatingUserLabel: UILabel!
-    @IBOutlet weak var creatingUserProfilePic: UIImageView!
-    @IBOutlet weak var receivingUserProfilePic: UIImageView!
-    @IBOutlet weak var receivingUserLabel: UILabel!
+class ManageBetTableViewCell: UITableViewCell {
+    @IBOutlet weak var yourProfilePicture: UIImageView!
+    @IBOutlet weak var friendProfilePic: UIImageView!
+    @IBOutlet weak var friendLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,6 +24,10 @@ class HomeFeedTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    @IBAction func manageBet(sender: AnyObject) {
+        
+    }
+    
     
     func cardSetup()
     {
@@ -41,18 +43,18 @@ class HomeFeedTableViewCell: UITableViewCell {
         let path: UIBezierPath = UIBezierPath(rect: self.cardView.bounds)
         self.cardView.layer.shadowPath = path.CGPath
         self.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-    
+        
     }
     
     func imageSetup()
     {
-        self.creatingUserProfilePic.clipsToBounds = true
-        self.creatingUserProfilePic.contentMode = .ScaleAspectFit
-        self.creatingUserProfilePic.backgroundColor = UIColor.whiteColor()
-        self.receivingUserProfilePic.clipsToBounds = true
-        self.receivingUserProfilePic.contentMode = .ScaleAspectFit
-        self.receivingUserProfilePic.backgroundColor = UIColor.whiteColor()
+        self.yourProfilePicture.clipsToBounds = true
+        self.yourProfilePicture.contentMode = .ScaleAspectFit
+        self.yourProfilePicture.backgroundColor = UIColor.whiteColor()
+        
+        self.friendProfilePic.clipsToBounds = true
+        self.friendProfilePic.contentMode = .ScaleAspectFit
+        self.friendProfilePic.backgroundColor = UIColor.whiteColor()
     }
-    
 
 }
