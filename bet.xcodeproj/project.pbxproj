@@ -48,6 +48,7 @@
 		18EAAB871D41785700E37808 /* MyBetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB861D41785700E37808 /* MyBetsViewController.swift */; };
 		18EAAB891D41787E00E37808 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB881D41787E00E37808 /* MyProfileViewController.swift */; };
 		18EAAB8B1D41789400E37808 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */; };
+		18FF56EB1D596BBC00DB5CD7 /* DCPullRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF56EA1D596BBC00DB5CD7 /* DCPullRefresh.swift */; };
 		D0B9193A3EE5A9043E271865 /* Pods_bet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424096A0330E94867596D7B0 /* Pods_bet.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		18EAAB861D41785700E37808 /* MyBetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetsViewController.swift; sourceTree = "<group>"; };
 		18EAAB881D41787E00E37808 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		18EAAB8A1D41789400E37808 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		18FF56EA1D596BBC00DB5CD7 /* DCPullRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCPullRefresh.swift; sourceTree = "<group>"; };
 		424096A0330E94867596D7B0 /* Pods_bet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		779321BF1B43C2A2734D20F7 /* Pods-bet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bet.release.xcconfig"; path = "Pods/Target Support Files/Pods-bet/Pods-bet.release.xcconfig"; sourceTree = "<group>"; };
 		EFBCEF49F8E9BE2BC95F2412 /* Pods-bet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bet/Pods-bet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				189CDB131D4ABCFC002403EE /* NSDate+convertToString.swift */,
+				18FF56EA1D596BBC00DB5CD7 /* DCPullRefresh.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				18A8DA1C1D52A0A70074601A /* AddFriendsViewController.swift in Sources */,
 				1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */,
 				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
+				18FF56EB1D596BBC00DB5CD7 /* DCPullRefresh.swift in Sources */,
 				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
 				1866BD111D513D5B007B1BAF /* ResultRequestViewController.swift in Sources */,
 				188B57491D5842670066B614 /* FriendBetCardTableViewCell.swift in Sources */,

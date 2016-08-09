@@ -10,8 +10,9 @@ import UIKit
 import Parse
 import ConvenienceKit
 import Foundation
+import DCPullRefresh
 
-class HomeFeedTableViewController: UITableViewController, TimelineComponentTarget {
+class HomeFeedTableViewController: UITableViewController {
 
     //MARK: Projects
     let defaultRange = 0...4
