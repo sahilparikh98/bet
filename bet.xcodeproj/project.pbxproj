@@ -21,6 +21,7 @@
 		188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188196161D47C8560054548F /* RequestTableViewCell.swift */; };
 		188196191D4802B20054548F /* DisplayBetRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188196181D4802B20054548F /* DisplayBetRequestViewController.swift */; };
 		1881961D1D4827C10054548F /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */; };
+		188B57491D5842670066B614 /* FriendBetCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B57481D5842670066B614 /* FriendBetCardTableViewCell.swift */; };
 		189A8FFD1D55CC7E00439EC8 /* HomeFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A8FFC1D55CC7D00439EC8 /* HomeFeedTableViewController.swift */; };
 		189A8FFF1D55CEFC00439EC8 /* HomeFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A8FFE1D55CEFB00439EC8 /* HomeFeedTableViewCell.swift */; };
 		189CDB0F1D4A8366002403EE /* MyBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */; };
@@ -65,6 +66,7 @@
 		188196161D47C8560054548F /* RequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
 		188196181D4802B20054548F /* DisplayBetRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayBetRequestViewController.swift; sourceTree = "<group>"; };
 		1881961C1D4827C10054548F /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
+		188B57481D5842670066B614 /* FriendBetCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendBetCardTableViewCell.swift; sourceTree = "<group>"; };
 		189A8FFC1D55CC7D00439EC8 /* HomeFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedTableViewController.swift; sourceTree = "<group>"; };
 		189A8FFE1D55CEFB00439EC8 /* HomeFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedTableViewCell.swift; sourceTree = "<group>"; };
 		189CDB0E1D4A8366002403EE /* MyBetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBetTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				18A8DA151D52544C0074601A /* FriendTableViewCell.swift */,
 				18A8DA191D5281E30074601A /* AddFriendTableViewCell.swift */,
 				189A8FFE1D55CEFB00439EC8 /* HomeFeedTableViewCell.swift */,
+				188B57481D5842670066B614 /* FriendBetCardTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				188196171D47C8560054548F /* RequestTableViewCell.swift in Sources */,
 				18DBAB5A1D46D96300CC03C3 /* Request.swift in Sources */,
 				1866BD111D513D5B007B1BAF /* ResultRequestViewController.swift in Sources */,
+				188B57491D5842670066B614 /* FriendBetCardTableViewCell.swift in Sources */,
 				189CDB141D4ABCFC002403EE /* NSDate+convertToString.swift in Sources */,
 				18763F341D4917330014ED6E /* DisplayFriendRequestViewController.swift in Sources */,
 				18DBAB581D46B7EC00CC03C3 /* BetRequestTableViewCell.swift in Sources */,

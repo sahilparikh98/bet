@@ -74,6 +74,14 @@ class AddFriendsViewController: UIViewController {
                             self.friendRequest!.creatingUser = PFUser.currentUser()!
                             self.friendRequest!.receivingUser = self.userToAdd!
                             self.friendRequest!.saveInBackground()
+                            
+                            let pushQuery = PFInstallation.query()!
+                            pushQuery.whereKey("user", equalTo: self.userToAdd!)
+                            let data = ["alert" : "Friend request from \(self.userToAdd!.username!)", "badge" : "Increment"]
+                            let push = PFPush()
+                            push.setData(data)
+                            push.sendPushInBackground()
+                            
                             let confirmationAlert = UIAlertController(title: "Request sent", message: "Friend request has been sent", preferredStyle: UIAlertControllerStyle.Alert)
                             confirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
                                 confirmationAlert.navigationController?.popToRootViewControllerAnimated(true)

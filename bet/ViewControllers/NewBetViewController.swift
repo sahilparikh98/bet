@@ -88,7 +88,7 @@ class NewBetViewController: UIViewController {
                 let bet = Bet()
                 bet.betDescription = self.betDescription.text
                 bet.creatingUser = PFUser.currentUser()!
-                bet.receivingUser = opponentUser
+                bet.receivingUser = opponentUser!
                 bet.forUsers = PFUser.currentUser()!
                 bet.againstUsers = opponentUser!
                 bet.finished = false
@@ -98,26 +98,8 @@ class NewBetViewController: UIViewController {
                 bet.fromUser = PFUser.currentUser()!
                 bet.toUser = opponentUser!
                 bet.saveInBackground()
-                let otherBet = Bet()
-                otherBet.betDescription = self.betDescription.text
-                otherBet.creatingUser = opponentUser
-                otherBet.forUsers = opponentUser!
-                otherBet.againstUsers = PFUser.currentUser()!
-                otherBet.receivingUser = PFUser.currentUser()!
-                otherBet.stakes = self.stakes.text
-                otherBet.accepted = NSNumber.init(bool: false)
-                otherBet.rejected = NSNumber.init(bool: false)
-                bet.fromUser = opponentUser!
-                bet.toUser = PFUser.currentUser()!
-                otherBet.saveInBackground()
-                let friendRequest = FriendRequest()
-                friendRequest.creatingUser = opponentUser!
-                friendRequest.receivingUser = PFUser.currentUser()!
-                friendRequest.fromUser = opponentUser!
-                friendRequest.toUser = PFUser.currentUser()!
-                friendRequest.accepted = false
-                friendRequest.rejected = false
-                friendRequest.saveInBackground()
+                
+                ParseHelper.sendBetRequestNotification(PFUser.currentUser()!, toUser: opponentUser!)
                 
                 
             }

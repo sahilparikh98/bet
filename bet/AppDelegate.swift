@@ -80,7 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = startViewController;
         self.window?.makeKeyAndVisible()
-
+        //
+        if let launchOptions = launchOptions as? [String : AnyObject] {
+            if let notificationDictionary = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
+                self.application(application, didReceiveRemoteNotification: notificationDictionary)
+            }
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -143,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         FBSDKAppEvents.activateApp()
+        clearBadges()
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -151,6 +157,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func clearBadges()
+    {
+        let installation = PFInstallation.currentInstallation()!
+        installation.badge = 0
+        installation.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                print("cleared badges")
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            }
+            else {
+                print("failed to clear badges")
+            }
+        }
     }
 
 

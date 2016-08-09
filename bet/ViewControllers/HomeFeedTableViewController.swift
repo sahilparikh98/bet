@@ -7,20 +7,68 @@
 //
 
 import UIKit
+import Parse
+import ConvenienceKit
+import Foundation
 
-class HomeFeedTableViewController: UITableViewController {
+class HomeFeedTableViewController: UITableViewController, TimelineComponentTarget {
 
-    //MARK: IB Outlets
+    //MARK: Projects
+    let defaultRange = 0...4
+    let additionalRangeSize = 5
+    var userBets: [Bet] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var friendBets: [Bet] = []
+    var friendship: Friendships?
+    var friends: [PFUser] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var getFriends: PFQuery?
+    var bets: [Bet] = []
     
-    //MARK: View methods
+    //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
+            self.userBets = result as? [Bet] ?? []
+            self.tableView.reloadData()
+        }
+        let friendsQuery = Friendships.query()
+        friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
+        ParseHelper.getUserFriendshipObject { (result: PFObject?, error: NSError?) -> Void in
+            self.friendship = result as? Friendships ?? nil
+            if self.friendship != nil
+            {
+                ParseHelper.getFriends(self.friendship!) { (result: [PFObject]?, error: NSError?) -> Void in
+                    self.friends = result as? [PFUser] ?? []
+                    ParseHelper.getNonFriendBets { (result: [PFObject]?, error: NSError?) -> Void in
+                        self.bets = result as? [Bet] ?? []
+                        for bet in self.bets
+                        {
+                            for friend in self.friends
+                            {
+                                if friend.username! == bet.creatingUser!.username!
+                                {
+                                    self.userBets.append(bet)
+                                }
+                            }
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+         self.friends = result as? [PFUser] ?? []
+         self.tableView.reloadData()
+         }*/
+        
     }
     override func viewDidLayoutSubviews() {
         self
@@ -40,6 +88,7 @@ class HomeFeedTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

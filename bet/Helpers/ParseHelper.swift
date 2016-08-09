@@ -161,9 +161,38 @@ public class ParseHelper
     
     static func getUserFriendshipObject(completionBlock: PFObjectResultBlock)
     {
-        
+        let query = Friendships.query()!
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.getFirstObjectInBackgroundWithBlock(completionBlock)
     }
     
+    static func sendBetRequestNotification(fromUser: PFUser, toUser: PFUser)
+    {
+        let pushQuery = PFInstallation.query()!
+        pushQuery.whereKey("user", equalTo: toUser)
+        let data = ["alert" : "New bet request from \(fromUser.username!)!", "badge" : "Increment"]
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setData(data)
+        push.sendPushInBackground()
+    }
+    
+    static func getNonFriendBets(completionBlock: PFQueryArrayResultBlock)
+    {
+        let betsFromFriends = Bet.query()
+        betsFromFriends!.whereKey("accepted", equalTo: true)
+        betsFromFriends!.whereKey("rejected", equalTo: false)
+        betsFromFriends!.whereKey("finished", equalTo: false)
+        betsFromFriends!.includeKey("creatingUser")
+        betsFromFriends!.includeKey("receivingUser")
+        betsFromFriends!.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    static func getFriends(friendship: Friendships, completionBlock: PFQueryArrayResultBlock)
+    {
+        let query = friendship.friends.query()
+        query.findObjectsInBackgroundWithBlock(completionBlock)
+    }
     
     
     

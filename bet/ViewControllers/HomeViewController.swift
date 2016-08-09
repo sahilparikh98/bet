@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import Bond
+import ConvenienceKit
+
 class HomeViewController: UIViewController {
 
     //MARK: IB Outlets
@@ -30,34 +32,26 @@ class HomeViewController: UIViewController {
     }
     var getFriends: PFQuery?
     var bets: [Bet] = []
-    
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
+            self.userBets.sortInPlace{
+                $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending
+            }
             self.tableView.reloadData()
         }
-        print("Bets from this user: \(self.userBets.count)")
         let friendsQuery = Friendships.query()
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
-        friendsQuery!.getFirstObjectInBackgroundWithBlock { (result: PFObject?, error: NSError?) -> Void in
+        ParseHelper.getUserFriendshipObject { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
             if self.friendship != nil
             {
-                self.getFriends = self.friendship!.friends.query()
-                self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                ParseHelper.getFriends(self.friendship!) { (result: [PFObject]?, error: NSError?) -> Void in
                     self.friends = result as? [PFUser] ?? []
-                    let betsFromFriends = Bet.query()
-                    betsFromFriends!.whereKey("accepted", equalTo: true)
-                    betsFromFriends!.whereKey("rejected", equalTo: false)
-                    betsFromFriends!.whereKey("finished", equalTo: false)
-                    betsFromFriends!.includeKey("creatingUser")
-                    betsFromFriends!.includeKey("receivingUser")
-                    betsFromFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+                   ParseHelper.getNonFriendBets { (result: [PFObject]?, error: NSError?) -> Void in
                         self.bets = result as? [Bet] ?? []
-                        print("\(self.bets.count)")
                         for bet in self.bets
                         {
                             for friend in self.friends
@@ -65,15 +59,12 @@ class HomeViewController: UIViewController {
                                 if friend.username! == bet.creatingUser!.username!
                                 {
                                     self.userBets.append(bet)
-                                    print("the bet created by \(friend.username!) was added")
-                                }
-                                else
-                                {
-                                    print("the bet was not added")
                                 }
                             }
                         }
-                        
+                    self.userBets.sortInPlace{
+                        $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending
+                    }
                         self.tableView.reloadData()
                     }
                 }
@@ -83,33 +74,7 @@ class HomeViewController: UIViewController {
             self.friends = result as? [PFUser] ?? []
             self.tableView.reloadData()
         }*/
-        let betsFromFriends = Bet.query()
-        betsFromFriends!.whereKey("accepted", equalTo: true)
-        betsFromFriends!.whereKey("rejected", equalTo: false)
-        betsFromFriends!.whereKey("finished", equalTo: false)
-        betsFromFriends!.includeKey("creatingUser")
-        betsFromFriends!.includeKey("receivingUser")
-        betsFromFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-            self.bets = result as? [Bet] ?? []
-            print("\(self.bets.count)")
-            for bet in self.bets
-            {
-                for friend in self.friends
-                {
-                    if friend.username! == bet.creatingUser!.username!
-                    {
-                        self.userBets.append(bet)
-                        print("the bet created by \(friend.username!) was added")
-                    }
-                    else
-                    {
-                        print("the bet was not added")
-                    }
-                }
-            }
-            
-            self.tableView.reloadData()
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {

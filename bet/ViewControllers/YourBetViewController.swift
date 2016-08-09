@@ -79,10 +79,19 @@ class YourBetViewController: UIViewController {
                     let result = Result()
                     result.loser = PFUser.currentUser()!
                     result.winner = self.opponent!
+                    result.fromUser = PFUser.currentUser()!
+                    result.toUser = self.opponent!
                     result.accepted = false
                     result.rejected = false
                     result.toBet = self.bet!
                     result.saveInBackground()
+                    let pushQuery = PFInstallation.query()!
+                    pushQuery.whereKey("user", equalTo: result.winner!)
+                    let data = ["alert" : "You have won your bet with \(result.loser!.username!). Approve the result!", "badge" : "Increment"]
+                    let push = PFPush()
+                    push.setQuery(pushQuery)
+                    push.setData(data)
+                    push.sendPushInBackground()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }))
                 presentViewController(confirmationAlert, animated: true, completion: nil)
@@ -114,10 +123,18 @@ class YourBetViewController: UIViewController {
                     let result = Result()
                     result.winner = PFUser.currentUser()!
                     result.loser = self.opponent!
+                    result.fromUser = PFUser.currentUser()!
+                    result.toUser = self.opponent!
                     result.accepted = false
                     result.rejected = false
                     result.toBet = self.bet!
                     result.saveInBackground()
+                    let pushQuery = PFInstallation.query()!
+                    pushQuery.whereKey("user", equalTo: self.opponent!)
+                    let push = PFPush()
+                    push.setQuery(pushQuery)
+                    push.setMessage("You have lost your bet with \(result.winner!.username!). Approve the result!")
+                    push.sendPushInBackground()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }))
                 presentViewController(confirmationAlert, animated: true, completion: nil)

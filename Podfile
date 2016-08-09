@@ -11,6 +11,7 @@ target 'bet' do
   pod ‘ParseFacebookUtilsV4’
   pod ‘ParseUI’
   pod “SearchTextField”
+  pod ‘DCPullRefresh’, ‘~> 1.0’
 
   # Pods for bet
 

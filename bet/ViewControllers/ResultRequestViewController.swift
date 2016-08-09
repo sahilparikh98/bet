@@ -50,6 +50,14 @@ class ResultRequestViewController: UIViewController {
                 result.saveInBackground()
                 bet.saveInBackground()
                 
+                let pushQuery = PFInstallation.query()!
+                pushQuery.whereKey("user", equalTo: result.fromUser!)
+                let data = ["alert" : "The result of your bet with \(result.toUser!.username!) has been accepted!", "badge" : "Increment"]
+                let push = PFPush()
+                push.setQuery(pushQuery)
+                push.setData(data)
+                push.sendPushInBackground()
+                
             }
         }
     }
@@ -68,6 +76,14 @@ class ResultRequestViewController: UIViewController {
                     bet.finished = true
                     bet.saveInBackground()
                     result.saveInBackground()
+                    
+                    let pushQuery = PFInstallation.query()!
+                    pushQuery.whereKey("user", equalTo: result.fromUser!)
+                    let data = ["alert" : "\(result.toUser!.username!) has rejected your result.", "badge" : "Increment"]
+                    let push = PFPush()
+                    push.setQuery(pushQuery)
+                    push.setData(data)
+                    push.sendPushInBackground()
                 }))
                 rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
                     rejectAlert.dismissViewControllerAnimated(true, completion: nil)

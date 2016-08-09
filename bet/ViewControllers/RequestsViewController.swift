@@ -150,6 +150,15 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
+                
+                let pushQuery = PFInstallation.query()!
+                pushQuery.whereKey("user", equalTo: displayFriendRequestController.friendRequest!.creatingUser!)
+                let data = ["alert" : "\(displayFriendRequestController.friendRequest!.receivingUser!.username!) has accepted your friend request. Send them a bet!", "badge" : "Increment"]
+                let push = PFPush()
+                push.setQuery(pushQuery)
+                push.setData(data)
+                push.sendPushInBackground()
+                
                 self.tableView.reloadData()
                 
                 self.tableView.reloadData()

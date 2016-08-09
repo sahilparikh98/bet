@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "RequestsViewController"
-            landmarkType = "3">
+            landmarkName = "unwindToRequestsViewController(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -400,6 +400,22 @@
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "logOutUser(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bet/AppDelegate.swift"
+            timestampString = "492370144.401636"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "clearBadges()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
