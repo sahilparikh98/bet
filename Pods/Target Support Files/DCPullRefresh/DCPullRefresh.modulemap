@@ -1,0 +1,6 @@
+framework module DCPullRefresh {
+  umbrella header "DCPullRefresh-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -108,6 +108,14 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>The DCExplosion use the MIT license</string>
+			<key>Title</key>
+			<string>DCPullRefresh</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
 You are hereby granted a non-exclusive, worldwide, royalty-free license to use,

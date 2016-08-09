@@ -7,6 +7,7 @@ PODS:
   - Bolts/Tasks (1.8.4)
   - Bond (4.0.0)
   - ConvenienceKit (0.4.0)
+  - DCPullRefresh (1.0)
   - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - Bond (= 4.0.0)
   - ConvenienceKit
+  - DCPullRefresh (~> 1.0)
   - Parse
   - ParseFacebookUtilsV4
   - ParseUI
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Bond: b729cdb22552def86efd4adfd8b8d93061eb4649
   ConvenienceKit: ba1ad8797897dc0d011676e961a2f3e9b270c841
+  DCPullRefresh: 125f45eae35168d8aa78ad965951ee8d6250848b
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
@@ -43,6 +46,6 @@ SPEC CHECKSUMS:
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SearchTextField: 3f5aecd8b33879dcaba496e5ffc7a00b9df2eb65
 
-PODFILE CHECKSUM: d3ad610f2e62609e9d79294e1fb516c4e167b166
+PODFILE CHECKSUM: 0f3b6f8b65397d65a8db584afa21921e30a845fc
 
 COCOAPODS: 1.0.1
