@@ -21,7 +21,7 @@ class AddFriendsViewController: UIViewController {
     var userToAdd: PFUser?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         ParseHelper.getUserFriends { (results: [PFObject]?, error: NSError?) -> Void in
             self.friends = results as? [PFUser] ?? []
             ParseHelper.getAllUsers { (result: [PFObject]?, error: NSError?) -> Void in

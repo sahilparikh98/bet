@@ -21,7 +21,7 @@ class NewBetViewController: UIViewController {
     var friendship: Friendships?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         // Do any additional setup after loading the view.
         
         self.betDescription.layer.borderWidth = 1

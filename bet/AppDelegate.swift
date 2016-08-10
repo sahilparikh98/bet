@@ -104,6 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // if login was successful, display the TabBarController
                 // 2
                 let installation = PFInstallation.currentInstallation()!
+                installation["user"] = PFUser.currentUser()!
+                installation.saveInBackground()
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")

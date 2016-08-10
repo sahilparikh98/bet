@@ -19,6 +19,7 @@ class MyBetsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         let userQuery = Bet.query()
         userQuery!.whereKey("creatingUser", equalTo: PFUser.currentUser()!)
         userQuery!.whereKey("finished", equalTo: false)

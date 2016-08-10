@@ -18,6 +18,8 @@ class FriendsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
         }
