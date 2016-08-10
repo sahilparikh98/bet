@@ -27,10 +27,10 @@ class YourBetViewController: UIViewController {
             {
                 self.opponent = self.bet!.receivingUser
                 self.friendLabel.text = opponent!.username!
-//                let image = ParseHelper.getProfilePicture(bet.receivingUser!)
-//                self.friendProfilePic.image = image
-//                let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//                self.yourProfilePic.image = yourImage
+                let image = ParseHelper.getProfilePicture(bet.receivingUser!)
+                self.friendProfilePic.image = image
+                let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+                self.yourProfilePic.image = yourImage
                 
                 //image set up
             }
@@ -38,10 +38,10 @@ class YourBetViewController: UIViewController {
             {
                 self.opponent = self.bet!.creatingUser!
                 self.friendLabel.text = opponent!.username!
-//                let image = ParseHelper.getProfilePicture(bet.creatingUser!)
-//                self.friendProfilePic.image = image
-//                let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//                self.yourProfilePic.image = yourImage
+                let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+                self.friendProfilePic.image = image
+                let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+                self.yourProfilePic.image = yourImage
                 //image set up
             }
             self.betDescription.text = "\(self.bet!.betDescription!)"

@@ -100,40 +100,31 @@ class HomeFeedTableViewController: UITableViewController {
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
             cell.receivingUser.text = bet.receivingUser!.username!
-            do {
-                if let profile = bet.receivingUser!.objectForKey("profilePicture") as? PFFile{
-                    let data = try profile.getData()
-                    let image = UIImage(data: data, scale: 1.0)
-                    cell.receivingUserProfilePic.image = image
-                }else{
-                   print("image not downloaded")
-                }
-                
-            }
-            catch {
-                print("image not downloaded")
-            }
+            let image = ParseHelper.getProfilePicture(bet.receivingUser!)
+            cell.receivingUserProfilePic.image = image
+            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+            cell.yourProfilePic.image = yourImage
             return cell
         }
         else if bet.receivingUser!.username! == PFUser.currentUser()!.username!
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
             cell.receivingUser.text = bet.creatingUser!.username!
-//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
-//            cell.receivingUserProfilePic.image = image
-//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//            cell.yourProfilePic.image = yourImage
+            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+            cell.receivingUserProfilePic.image = image
+            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+            cell.yourProfilePic.image = yourImage
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! HomeFeedTableViewCell
             cell.creatingUserLabel.text = bet.creatingUser!.username!
-//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
-//            cell.creatingUserProfilePic.image = image
+            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+            cell.creatingUserProfilePic.image = image
             cell.receivingUserLabel.text = bet.receivingUser!.username!
-//            let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
-//            cell.receivingUserProfilePic.image = otherImage
+            let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
+            cell.receivingUserProfilePic.image = otherImage
             return cell
         }
     }
@@ -165,6 +156,11 @@ class HomeFeedTableViewController: UITableViewController {
             }
         }
         // Pass the selected object to the new view controller.
+    }
+    
+    @IBAction func unwindToHomeFeedViewController(segue: UIStoryboardSegue)
+    {
+        
     }
     
     

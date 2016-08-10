@@ -21,6 +21,8 @@ class DisplayFriendRequestViewController: UIViewController {
         if let friendRequest = friendRequest
         {
             self.nameLabel.text = friendRequest.creatingUser!.username!
+            let image = ParseHelper.getProfilePicture(friendRequest.creatingUser!)
+            self.profilePicture.image = image
 
         }
     }

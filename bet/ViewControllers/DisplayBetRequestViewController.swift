@@ -10,8 +10,8 @@ import UIKit
 
 class DisplayBetRequestViewController: UIViewController {
     @IBOutlet weak var fromUser: UILabel!
-    @IBOutlet weak var betDescription: UILabel!
-    @IBOutlet weak var betStakes: UILabel!
+    @IBOutlet weak var betDescription: UITextView!
+    @IBOutlet weak var friendProfilePic: UIImageView!
 
     var bet: Bet?
     override func viewDidLoad() {
@@ -21,7 +21,9 @@ class DisplayBetRequestViewController: UIViewController {
         {
             self.fromUser.text = bet.creatingUser!.username!
             self.betDescription.text = bet.betDescription!
-            self.betStakes.text = bet.stakes!
+            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+            self.friendProfilePic.image = image
+
         }
         
         // Do any additional setup after loading the view.

@@ -22,8 +22,8 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameLabel.text = PFUser.currentUser()!.username!
-//        let image = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//        self.yourProfilePic.image = image
+        let image = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+        self.yourProfilePic.image = image
         // Do any additional setup after loading the view.
     }
 

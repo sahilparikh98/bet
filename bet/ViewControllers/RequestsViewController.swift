@@ -189,9 +189,8 @@ class RequestsViewController: UIViewController {
                 self.allRequests.filter { $0 !== noLongerRequest }
             }
         }
-        
-       
     }
+    
         
         
     

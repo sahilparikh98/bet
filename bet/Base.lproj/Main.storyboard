@@ -320,6 +320,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="friendLabel" destination="ozt-P7-hNL" id="IYu-Ug-6jD"/>
+                                            <outlet property="friendProfilePic" destination="FpS-iK-YuH" id="JjF-lo-Dah"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -573,6 +574,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="betDescription" destination="Ue9-tl-utn" id="ehS-7G-f9n"/>
+                        <outlet property="friendProfilePic" destination="08n-0d-rdK" id="cj7-mQ-cdb"/>
                         <outlet property="usersInvolved" destination="y3U-XA-NNJ" id="GJV-KT-ejZ"/>
                     </connections>
                 </viewController>
@@ -645,6 +647,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bet Request" id="m9j-KT-Qhg"/>
                     <connections>
+                        <outlet property="betDescription" destination="9zD-jq-XaR" id="mml-XK-DJQ"/>
+                        <outlet property="friendProfilePic" destination="HM0-9X-OvW" id="6Gy-Gw-MeS"/>
                         <outlet property="fromUser" destination="2NE-4r-Qm9" id="cWk-t7-T8b"/>
                     </connections>
                 </viewController>
@@ -1131,7 +1135,7 @@
                     <navigationItem key="navigationItem" title="New Bet" id="t3o-6g-pMQ">
                         <barButtonItem key="rightBarButtonItem" title="That's a bet!" id="bXx-b6-hCg">
                             <connections>
-                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="save" unwindAction="unwindToHomeFeedTableViewController:" id="3Ra-OY-0Wz"/>
+                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="save" unwindAction="unwindToHomeFeedViewController:" id="dk4-f0-5mf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

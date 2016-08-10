@@ -103,6 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else  if let _ = user {
                 // if login was successful, display the TabBarController
                 // 2
+                let installation = PFInstallation.currentInstallation()!
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
                 // 3

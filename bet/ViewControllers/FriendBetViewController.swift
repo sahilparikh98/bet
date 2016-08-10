@@ -25,10 +25,10 @@ class FriendBetViewController: UIViewController {
         {
             self.creatingUserLabel.text = bet.creatingUser!.username!
             self.receivingUserLabel.text = bet.receivingUser!.username!
-//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
-//            self.creatingUserProfilePic.image = image
-//            let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
-//            self.receivingUserProfilePic.image = otherImage
+            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+            self.creatingUserProfilePic.image = image
+            let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
+            self.receivingUserProfilePic.image = otherImage
         }
         // Do any additional setup after loading the view.
     }

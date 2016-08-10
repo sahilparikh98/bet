@@ -195,20 +195,27 @@ public class ParseHelper
         query.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
-//    static func getProfilePicture(user: PFUser) -> UIImage
-//    {
-//        do {
-//            let data = try user.objectForKey("profilePicture")?.getData()
-//            let image = UIImage(data: data!, scale: 1.0)
-//            return image!
-//        }
-//        catch {
-//            print("no image, setting default image")
-//            let image = UIImage(named: "download")
-//            return image!
-//            
-//        }
-//    }
+    static func getProfilePicture(user: PFUser) -> UIImage
+    {
+        if let profile = user.objectForKey("profilePicture") as? PFFile
+        {
+            do {
+                let data = try profile.getData()
+                let image = UIImage(data: data, scale: 1.0)
+                return image!
+            }
+            catch {
+                print("image not downloaded")
+                let image = UIImage(named: "download")
+                return image!
+            }
+        }
+        else
+        {
+            let image = UIImage(named: "download")
+            return image!
+        }
+    }
     
     
     

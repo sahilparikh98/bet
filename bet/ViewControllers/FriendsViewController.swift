@@ -52,7 +52,9 @@ extension FriendsViewController: UITableViewDataSource
         let friend = friends[indexPath.row]
         let cell = self.tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendTableViewCell
         cell.friendLabel.text = friend.username!
-        //image set up
+        let image = ParseHelper.getProfilePicture(friend)
+        cell.friendProfilePic.image = image
         return cell
+        
     }
 }

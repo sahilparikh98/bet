@@ -61,8 +61,7 @@ class MyBetsViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-
-
+    
 }
 
 extension MyBetsViewController: UITableViewDataSource
@@ -77,20 +76,20 @@ extension MyBetsViewController: UITableViewDataSource
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! ManageBetTableViewCell
             cell.friendLabel.text = bet.receivingUser!.username!
-//            let image = ParseHelper.getProfilePicture(bet.receivingUser!)
-//            cell.friendProfilePic.image = image
-//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//            cell.yourProfilePicture.image = yourImage
+            let image = ParseHelper.getProfilePicture(bet.receivingUser!)
+            cell.friendProfilePic.image = image
+            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+            cell.yourProfilePicture.image = yourImage
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! ManageBetTableViewCell
             cell.friendLabel.text = bet.creatingUser!.username!
-//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
-//            cell.friendProfilePic.image = image
-//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
-//            cell.yourProfilePicture.image = yourImage
+            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+            cell.friendProfilePic.image = image
+            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+            cell.yourProfilePicture.image = yourImage
             //image setup
             return cell
         }

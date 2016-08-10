@@ -11,6 +11,7 @@ import Parse
 
 class ResultRequestViewController: UIViewController {
 
+    @IBOutlet weak var friendProfilePic: UIImageView!
     @IBOutlet weak var usersInvolved: UILabel!
     @IBOutlet weak var betDescription: UITextView!
     var bet: Bet?
@@ -29,6 +30,8 @@ class ResultRequestViewController: UIViewController {
             }
             
             self.betDescription.text = result.toBet!.betDescription!
+            let image = ParseHelper.getProfilePicture(result.fromUser!)
+            self.friendProfilePic.image = image
             
         }
         // Do any additional setup after loading the view.
