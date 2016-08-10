@@ -28,7 +28,6 @@ class MyBetsViewController: UIViewController {
         userQuery!.includeKey("receivingUser")
         userQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
             self.myBets = result as? [Bet] ?? []
-            print("\(self.myBets.count) on the my bets controller")
             self.tableView.reloadData()
         }
         // Do any additional setup after loading the view.
@@ -51,6 +50,13 @@ class MyBetsViewController: UIViewController {
             {
                 print("creating bet")
             }
+            else if identifier == "displayYourBet"
+            {
+                let controller = segue.destinationViewController as! YourBetViewController
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let bet = self.myBets[indexPath.row]
+                controller.bet = bet
+            }
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -69,18 +75,23 @@ extension MyBetsViewController: UITableViewDataSource
         let bet = self.myBets[indexPath.row]
         if bet.creatingUser!.username! == PFUser.currentUser()!.username!
         {
-            let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! PersonalBetsTableViewCell
-            cell.usersInvolved.text = "Your bet with \(bet.receivingUser!.username!)"
-            cell.betDescription.text = bet.betDescription!
-            cell.timestamp.text = bet.createdAt!.convertToString()
+            let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! ManageBetTableViewCell
+            cell.friendLabel.text = bet.receivingUser!.username!
+//            let image = ParseHelper.getProfilePicture(bet.receivingUser!)
+//            cell.friendProfilePic.image = image
+//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+//            cell.yourProfilePicture.image = yourImage
             return cell
         }
         else
         {
-            let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! PersonalBetsTableViewCell
-            cell.usersInvolved.text = "Your bet with \(bet.creatingUser!.username!)"
-            cell.betDescription.text = bet.betDescription!
-            cell.timestamp.text = bet.createdAt!.convertToString()
+            let cell = tableView.dequeueReusableCellWithIdentifier("PersonalBetCell", forIndexPath: indexPath) as! ManageBetTableViewCell
+            cell.friendLabel.text = bet.creatingUser!.username!
+//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+//            cell.friendProfilePic.image = image
+//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+//            cell.yourProfilePicture.image = yourImage
+            //image setup
             return cell
         }
     }

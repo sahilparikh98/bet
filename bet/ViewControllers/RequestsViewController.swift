@@ -53,6 +53,7 @@ class RequestsViewController: UIViewController {
         resultQuery!.includeKey("fromUser")
         resultQuery!.includeKey("winner")
         resultQuery!.includeKey("loser")
+        resultQuery!.includeKey("toBet")
         resultQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
             self.resultRequests = result as? [Result] ?? []
             for resultRequest in self.resultRequests
@@ -150,15 +151,6 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
                 allRequests.filter { $0 !== noLongerRequest }
                 betRequests.filter { $0 !== noLongerRequest }
-                
-                let pushQuery = PFInstallation.query()!
-                pushQuery.whereKey("user", equalTo: displayFriendRequestController.friendRequest!.creatingUser!)
-                let data = ["alert" : "\(displayFriendRequestController.friendRequest!.receivingUser!.username!) has accepted your friend request. Send them a bet!", "badge" : "Increment"]
-                let push = PFPush()
-                push.setQuery(pushQuery)
-                push.setData(data)
-                push.sendPushInBackground()
-                
                 self.tableView.reloadData()
                 
                 self.tableView.reloadData()
@@ -184,7 +176,17 @@ class RequestsViewController: UIViewController {
                 controller.result!.saveInBackground()
                 controller.result!.toBet!.saveInBackground()
                 self.allRequests.filter { $0 !== noLongerRequest }
-                
+            }
+            else if identifier == "rejectResultRequest"
+            {
+                let controller = segue.sourceViewController as! ResultRequestViewController
+                let noLongerRequest = controller.result! as PFObject
+                controller.result!.accepted = false
+                controller.result!.rejected = true
+                controller.result!.toBet!.finished = true
+                controller.result!.saveInBackground()
+                controller.result!.toBet!.saveInBackground()
+                self.allRequests.filter { $0 !== noLongerRequest }
             }
         }
         

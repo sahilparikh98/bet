@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import Bond
 import ConvenienceKit
+import DCPullRefresh
 
 class HomeViewController: UIViewController {
 
@@ -74,7 +75,10 @@ class HomeViewController: UIViewController {
             self.friends = result as? [PFUser] ?? []
             self.tableView.reloadData()
         }*/
-        
+        //MARK: Pull to refresh 
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {

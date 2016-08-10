@@ -10,8 +10,9 @@ import UIKit
 import Parse
 import ConvenienceKit
 import Foundation
+import DCPullRefresh
 
-class HomeFeedTableViewController: UITableViewController, TimelineComponentTarget {
+class HomeFeedTableViewController: UITableViewController {
 
     //MARK: Projects
     let defaultRange = 0...4
@@ -68,16 +69,12 @@ class HomeFeedTableViewController: UITableViewController, TimelineComponentTarge
          self.friends = result as? [PFUser] ?? []
          self.tableView.reloadData()
          }*/
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.tableView.reloadData()
+        }
         
     }
-    override func viewDidLayoutSubviews() {
-        self
-    }
     
-    func cardSetup()
-    {
-    
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,24 +84,91 @@ class HomeFeedTableViewController: UITableViewController, TimelineComponentTarge
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
         
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.userBets.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let bet = userBets[indexPath.row]
+        if bet.creatingUser!.username! == PFUser.currentUser()!.username!
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
+            cell.receivingUser.text = bet.receivingUser!.username!
+            do {
+                if let profile = bet.receivingUser!.objectForKey("profilePicture") as? PFFile{
+                    let data = try profile.getData()
+                    let image = UIImage(data: data, scale: 1.0)
+                    cell.receivingUserProfilePic.image = image
+                }else{
+                   print("image not downloaded")
+                }
+                
+            }
+            catch {
+                print("image not downloaded")
+            }
+            return cell
+        }
+        else if bet.receivingUser!.username! == PFUser.currentUser()!.username!
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelfCell", forIndexPath: indexPath) as! SelfFeedTableViewCell
+            cell.receivingUser.text = bet.creatingUser!.username!
+//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+//            cell.receivingUserProfilePic.image = image
+//            let yourImage = ParseHelper.getProfilePicture(PFUser.currentUser()!)
+//            cell.yourProfilePic.image = yourImage
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! HomeFeedTableViewCell
+            cell.creatingUserLabel.text = bet.creatingUser!.username!
+//            let image = ParseHelper.getProfilePicture(bet.creatingUser!)
+//            cell.creatingUserProfilePic.image = image
+            cell.receivingUserLabel.text = bet.receivingUser!.username!
+//            let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
+//            cell.receivingUserProfilePic.image = otherImage
+            return cell
+        }
     }
-    */
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        
+        if let identifier = segue.identifier
+        {
+            if identifier == "createBet"
+            {
+                print("creatingBet")
+            }
+            else if identifier == "displayFriendBet"
+            {
+                let indexPath = tableView.indexPathForSelectedRow!
+                let bet = self.userBets[indexPath.row]
+                let controller = segue.destinationViewController as! FriendBetViewController
+                controller.bet = bet
+            }
+            else if identifier == "displayYourBet"
+            {
+                let indexPath = tableView.indexPathForSelectedRow!
+                let bet = self.userBets[indexPath.row]
+                let controller = segue.destinationViewController as! YourBetViewController
+                controller.bet = bet
+            }
+        }
+        // Pass the selected object to the new view controller.
+    }
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -141,14 +205,7 @@ class HomeFeedTableViewController: UITableViewController, TimelineComponentTarge
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
 
 }
