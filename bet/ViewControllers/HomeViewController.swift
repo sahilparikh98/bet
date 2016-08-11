@@ -36,9 +36,25 @@ class HomeViewController: UIViewController {
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
+        self.getFeedData()
+        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+            self.friends = result as? [PFUser] ?? []
+            self.tableView.reloadData()
+        }*/
+        //MARK: Pull to refresh 
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.getFeedData()
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getFeedData()
+    {
         ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
+            print("\(self.userBets.count) number of user bets in getFeedData method")
             self.userBets.sortInPlace{
                 $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending
             }
@@ -52,7 +68,7 @@ class HomeViewController: UIViewController {
             {
                 ParseHelper.getFriends(self.friendship!) { (result: [PFObject]?, error: NSError?) -> Void in
                     self.friends = result as? [PFUser] ?? []
-                   ParseHelper.getNonFriendBets { (result: [PFObject]?, error: NSError?) -> Void in
+                    ParseHelper.getNonFriendBets { (result: [PFObject]?, error: NSError?) -> Void in
                         self.bets = result as? [Bet] ?? []
                         for bet in self.bets
                         {
@@ -64,22 +80,20 @@ class HomeViewController: UIViewController {
                                 }
                             }
                         }
-                    self.userBets.sortInPlace{
-                        $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending
-                    }
+                        self.userBets.sortInPlace{
+                            $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending
+                        }
+                        print("\(self.userBets.count) number of user bets in getFeedData method after adding friend's bets")
                         self.tableView.reloadData()
                     }
                 }
             }
         }
-        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-            self.friends = result as? [PFUser] ?? []
-            self.tableView.reloadData()
-        }*/
-        //MARK: Pull to refresh 
-        self.tableView.dcRefreshControl = DCRefreshControl {
-            self.tableView.reloadData()
-        }
+    }
+    
+    func userClickOnAccept() {
+        getFeedData()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

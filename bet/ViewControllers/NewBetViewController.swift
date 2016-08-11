@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import SearchTextField
 
-class NewBetViewController: UIViewController {
+class NewBetViewController: UIViewController, UITextViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var betDescription: UITextView!
@@ -21,12 +21,16 @@ class NewBetViewController: UIViewController {
     var friendship: Friendships?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.betDescription.delegate = self
         self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         // Do any additional setup after loading the view.
-        
         self.betDescription.layer.borderWidth = 1
         self.betDescription.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.betDescription.layer.cornerRadius = 8
+        self.betDescription.text = "What's the bet? Include the terms!"
+        self.betDescription.textColor = UIColor.lightGrayColor()
+        
+        
         ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
             let friendsUsernames = self.friends.map { $0.username! }
@@ -49,6 +53,20 @@ class NewBetViewController: UIViewController {
         
     }
 
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "What's the bet? Include the terms!"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,6 +76,7 @@ class NewBetViewController: UIViewController {
     
     // MARK: - Navigation
 
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
@@ -81,17 +100,44 @@ class NewBetViewController: UIViewController {
 //                        alert.dismissViewControllerAnimated(true, completion: nil)
 //                    }))
 //                }
-                let request = PFObject(className: "BetRequest")
-                request["fromUser"] = PFUser.currentUser()!
+                
+                
+                
+            }
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "saveBetRequest"
+        {
+            if self.userBeingBet.text!.isEmpty
+            {
+                let alert = UIAlertController(title: "No user has been selected", message: "Please enter a user", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+                return false
+            }
+            else if self.betDescription.text! == "What's the bet? Include the terms!"
+            {
+                let alert = UIAlertController(title: "No description", message: "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+                return false
+            }
+            else
+            {
                 for friend in friends
                 {
-                    //print("\(user.username!)")
+
                     if friend.username! == self.userBeingBet.text
                     {
                         opponentUser = friend
                     }
                 }
-                print("\(opponentUser?.username)")
                 let bet = Bet()
                 bet.betDescription = self.betDescription.text
                 bet.creatingUser = PFUser.currentUser()!
@@ -104,15 +150,15 @@ class NewBetViewController: UIViewController {
                 bet.fromUser = PFUser.currentUser()!
                 bet.toUser = opponentUser!
                 bet.saveInBackground()
-                
-                
-                
+                return true
             }
         }
+        return true
+        
     }
+
     
 
     //MARK: Actions
-    
     
 }

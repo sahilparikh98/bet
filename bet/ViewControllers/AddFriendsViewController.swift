@@ -28,16 +28,25 @@ class AddFriendsViewController: UIViewController {
                 self.allUsers = result as? [PFUser] ?? []
                 for user in self.allUsers
                 {
-                    for friend in self.friends
+                    if self.friends.count != 0
                     {
-                        if user.username! != friend.username!
+                        for friend in self.friends
                         {
-                            self.nonFriends.append(user)
+                            if user.username! != friend.username!
+                            {
+                                self.nonFriends.append(user)
+                            }
                         }
+                        self.nonFriendsUsernames = self.nonFriends.map { $0.username! }
+                        self.friendToAdd.filterStrings(self.nonFriendsUsernames)
+                    }
+                    else
+                    {
+                        self.nonFriendsUsernames = self.allUsers.map { $0.username! }
+                        self.friendToAdd.filterStrings(self.nonFriendsUsernames)
                     }
                 }
-                self.nonFriendsUsernames = self.nonFriends.map { $0.username! }
-                self.friendToAdd.filterStrings(self.nonFriendsUsernames)
+                
             }
         }
     // Do any additional setup after loading the view.

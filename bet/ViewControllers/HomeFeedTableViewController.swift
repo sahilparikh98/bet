@@ -35,9 +35,34 @@ class HomeFeedTableViewController: UITableViewController {
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userClickOnAccept", name: "userClickOnAccept", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userAcceptedResult", name: "userAcceptedResult", object: nil)
         self.tableView.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
+        self.getFeedData()
+        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
+         self.friends = result as? [PFUser] ?? []
+         self.tableView.reloadData()
+         }*/
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.getFeedData()
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func getFeedData()
+    {
         ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
+            print("\(self.userBets.count)")
             self.tableView.reloadData()
         }
         let friendsQuery = Friendships.query()
@@ -46,10 +71,10 @@ class HomeFeedTableViewController: UITableViewController {
             self.friendship = result as? Friendships ?? nil
             if self.friendship != nil
             {
-                ParseHelper.getFriends(self.friendship!) { (result: [PFObject]?, error: NSError?) -> Void in
-                    self.friends = result as? [PFUser] ?? []
-                    ParseHelper.getNonFriendBets { (result: [PFObject]?, error: NSError?) -> Void in
-                        self.bets = result as? [Bet] ?? []
+                ParseHelper.getFriends(self.friendship!) { (results: [PFObject]?, error: NSError?) -> Void in
+                    self.friends = results as? [PFUser] ?? []
+                    ParseHelper.getNonFriendBets { (resultss: [PFObject]?, error: NSError?) -> Void in
+                        self.bets = resultss as? [Bet] ?? []
                         for bet in self.bets
                         {
                             for friend in self.friends
@@ -64,22 +89,25 @@ class HomeFeedTableViewController: UITableViewController {
                     }
                 }
             }
+            else
+            {
+                let newFriendships = Friendships()
+                newFriendships.user = PFUser.currentUser()!
+                newFriendships.saveInBackground()
+            }
         }
-        /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-         self.friends = result as? [PFUser] ?? []
-         self.tableView.reloadData()
-         }*/
-        self.tableView.dcRefreshControl = DCRefreshControl {
-            self.tableView.reloadData()
-        }
-        
+    }
+    //MARK: NS Notification Actions
+    
+    func userClickOnAccept() {
+        getFeedData()
+        self.tableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func userAcceptedResult() {
+        self.getFeedData()
+        self.tableView.reloadData()
     }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -162,6 +190,8 @@ class HomeFeedTableViewController: UITableViewController {
     {
         
     }
+    
+    
     
     
     

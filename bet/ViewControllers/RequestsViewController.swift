@@ -62,6 +62,10 @@ class RequestsViewController: UIViewController {
             }
             self.tableView.reloadData()
         }
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.viewDidLoad()
+            self.tableView.reloadData()
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -109,29 +113,38 @@ class RequestsViewController: UIViewController {
     
     @IBAction func unwindToRequestsViewController(segue: UIStoryboardSegue)
     {
+        self.tableView.reloadData()
         if let identifier = segue.identifier
         {
-            if identifier == "Reject"
+            if identifier == "reject"
             {
                 let displayBetRequestViewController = segue.sourceViewController as! DisplayBetRequestViewController
+                let noLongerRequest = displayBetRequestViewController.bet! as PFObject!
                 displayBetRequestViewController.bet!.accepted = false
                 displayBetRequestViewController.bet!.rejected = true
-                displayBetRequestViewController.bet!.saveInBackground()
-                let noLongerRequest = displayBetRequestViewController.bet! as PFObject!
-                allRequests.filter { $0 !== noLongerRequest }
-                betRequests.filter { $0 !== noLongerRequest }
-                self.tableView.reloadData()
+                displayBetRequestViewController.bet!.saveInBackgroundWithBlock { (bool: Bool, error: NSError?) in
+                    self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
+                    self.betRequests = self.betRequests.filter { $0 !== noLongerRequest }
+                    self.tableView.reloadData()
+                }
+                
             }
-            else if identifier == "Accept"
+            else if identifier == "accept"
             {
                 let displayBetRequestViewController = segue.sourceViewController as! DisplayBetRequestViewController
                 let noLongerRequest = displayBetRequestViewController.bet! as PFObject!
                 displayBetRequestViewController.bet!.rejected = false
                 displayBetRequestViewController.bet!.accepted = true
-                displayBetRequestViewController.bet!.saveInBackground()
-                allRequests.filter { $0 !== noLongerRequest }
-                betRequests.filter { $0 !== noLongerRequest }
-                self.tableView.reloadData()
+                
+                displayBetRequestViewController.bet!.saveInBackgroundWithBlock({ (bool:Bool, error:NSError?) in
+                    print("bet accepted")
+                    NSNotificationCenter.defaultCenter().postNotificationName("userClickOnAccept", object: nil)
+                    self.allRequests =  self.allRequests.filter { $0 !== noLongerRequest }
+                    self.betRequests =  self.betRequests.filter { $0 !== noLongerRequest }
+                    self.tableView.reloadData()
+                    
+                })
+                
             }
             else if identifier == "acceptFriendRequest"
             {
@@ -140,19 +153,23 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.accepted = true
                 displayFriendRequestController.friendRequest!.rejected = false
                 displayFriendRequestController.friendRequest!.saveInBackground()
-                let friendship = Friendships()
-                friendship.friends.addObject(displayFriendRequestController.friendRequest!.creatingUser!)
-                friendship.user = PFUser.currentUser()!
-                friendship.saveInBackground()
+                displayFriendRequestController.friendRequest!.saveInBackgroundWithBlock ({ (bool: Bool, error: NSError?) in
+                    ParseHelper.getUserFriendshipObject { (resultOne: PFObject?, error: NSError?) -> Void in
+                        let friendship = resultOne as? Friendships ?? nil
+                        friendship!.friends.addObject(displayFriendRequestController.friendRequest!.creatingUser!)
+                        friendship!.saveInBackgroundWithBlock( {(bool: Bool, error: NSError?) in
+                            NSNotificationCenter.defaultCenter().postNotificationName("userAcceptedFriendRequest", object: nil)
+                            self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
+                            self.betRequests = self.betRequests.filter { $0 !== noLongerRequest }
+                            self.tableView.reloadData()
+                        })
+                    }
+                })
                 let backFriendship = Friendships()
                 backFriendship.friends.addObject(PFUser.currentUser()!)
                 backFriendship.user = displayFriendRequestController.friendRequest!.creatingUser!
                 backFriendship.saveInBackground()
                 displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
-                allRequests.filter { $0 !== noLongerRequest }
-                betRequests.filter { $0 !== noLongerRequest }
-                self.tableView.reloadData()
-                
                 self.tableView.reloadData()
             }
             else if identifier == "rejectFriendRequest"
@@ -161,10 +178,10 @@ class RequestsViewController: UIViewController {
                 let noLongerRequest = displayFriendRequestController.friendRequest! as PFObject
                 displayFriendRequestController.friendRequest!.accepted = false
                 displayFriendRequestController.friendRequest!.rejected = true
-                displayFriendRequestController.friendRequest!.saveInBackground()
-                allRequests.filter { $0 !== noLongerRequest }
-                betRequests.filter { $0 !== noLongerRequest }
-                self.tableView.reloadData()
+                displayFriendRequestController.friendRequest!.saveInBackgroundWithBlock({(bool: Bool, error: NSError?) in
+                    self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
+                    self.tableView.reloadData()
+                })
             }
             else if identifier == "acceptResultRequest"
             {
@@ -173,9 +190,14 @@ class RequestsViewController: UIViewController {
                 controller.result!.accepted = true
                 controller.result!.rejected = false
                 controller.result!.toBet!.finished = true
-                controller.result!.saveInBackground()
-                controller.result!.toBet!.saveInBackground()
-                self.allRequests.filter { $0 !== noLongerRequest }
+                controller.result!.saveInBackgroundWithBlock({(bool: Bool, error: NSError?) in
+                    self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
+                    self.tableView.reloadData()
+                    controller.result!.toBet!.saveInBackgroundWithBlock({(bool: Bool, error: NSError?) in
+                        NSNotificationCenter.defaultCenter().postNotificationName("userAcceptedResult", object: nil)
+                    })
+                })
+                
             }
             else if identifier == "rejectResultRequest"
             {

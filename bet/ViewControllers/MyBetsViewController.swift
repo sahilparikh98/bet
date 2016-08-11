@@ -31,6 +31,10 @@ class MyBetsViewController: UIViewController {
             self.myBets = result as? [Bet] ?? []
             self.tableView.reloadData()
         }
+        
+        self.tableView.dcRefreshControl = DCRefreshControl {
+            self.tableView.reloadData()
+        }
         // Do any additional setup after loading the view.
     }
 

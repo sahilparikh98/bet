@@ -58,11 +58,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let startViewController: UIViewController
         
-        if (user != nil) {
+        if let user = user {
             // 3
             // if we have a user, set the TabBarController to be the initial view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             startViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+            let installation = PFInstallation.currentInstallation()!
+            installation["user"] = user
+            installation.saveInBackground()
+            
         } else {
             // 4
             // Otherwise set the LoginViewController to be the first
@@ -74,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             loginViewController.signUpController?.delegate = parseLoginHelper
             loginViewController.signUpController?.emailAsUsername = loginViewController.emailAsUsername
             startViewController = loginViewController
+            
         }
         
         // 5
@@ -100,11 +105,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error {
                 // 1
                 ErrorHandling.defaultErrorHandler(error)
-            } else  if let _ = user {
+            } else  if let user = user {
                 // if login was successful, display the TabBarController
                 // 2
                 let installation = PFInstallation.currentInstallation()!
-                installation["user"] = PFUser.currentUser()!
+                installation["user"] = user
                 installation.saveInBackground()
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
