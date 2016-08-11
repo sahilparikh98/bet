@@ -37,19 +37,16 @@ class HomeFeedTableViewController: UITableViewController {
         super.viewDidLoad()
         let titleDict: NSDictionary = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userClickOnAccept", name: "userClickOnAccept", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userAcceptedResult", name: "userAcceptedResult", object: nil)
-        self.tableView.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         self.getFeedData()
         /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
          self.friends = result as? [PFUser] ?? []
          self.tableView.reloadData()
          }*/
-        self.tableView.dcRefreshControl = DCRefreshControl {
-            self.getFeedData()
-            self.tableView.reloadData()
-        }
         
     }
     
