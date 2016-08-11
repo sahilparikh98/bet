@@ -49,16 +49,16 @@ extension ParseLoginHelper : PFLogInViewControllerDelegate {
                 
                 if let fbUsername = result?["name"] as? String {
                     // assign Facebook name to PFUser
-                    let userId: String?
+                    var userId: String = ""
                     if result != nil
                     {
-                        userId = result?["id"] as? String
+                        userId = (result?["id"] as? String)!
                     }
                     user.username = fbUsername
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                         
                         // Get Facebook profile picture
-                        let userProfile = "https://graph.facebook.com/" + userId! + "/picture?type=large"
+                        let userProfile = "https://graph.facebook.com/" + userId + "/picture?type=large"
                         
                         let profilePictureUrl = NSURL(string: userProfile)
                         
@@ -69,6 +69,7 @@ extension ParseLoginHelper : PFLogInViewControllerDelegate {
                             let profileFileObject = PFFile(data:profilePictureData!)
                             user.setObject(profileFileObject!, forKey: "profilePicture")
                         }
+                    }
                     // store PFUser
                     user.saveInBackgroundWithBlock({ (success, error) -> Void in
                         if (success) {
