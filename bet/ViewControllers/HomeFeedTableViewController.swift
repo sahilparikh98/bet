@@ -42,7 +42,10 @@ class HomeFeedTableViewController: UITableViewController {
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userClickOnAccept", name: "userClickOnAccept", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userAcceptedResult", name: "userAcceptedResult", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userRejectedResult", name: "userRejectedResult", object: nil)
         self.getFeedData()
+        self.tableView.reloadData()
+        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         /*self.getFriends!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
          self.friends = result as? [PFUser] ?? []
          self.tableView.reloadData()
@@ -54,17 +57,25 @@ class HomeFeedTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func handleRefresh(refreshControl: UIRefreshControl)
+    {
+        self.getFeedData()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     func getFeedData()
     {
+        self.userBets.removeAll()
         ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.userBets = result as? [Bet] ?? []
             print("\(self.userBets.count)")
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
         let friendsQuery = Friendships.query()
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
-        ParseHelper.getUserFriendshipObject { (result: PFObject?, error: NSError?) -> Void in
+        ParseHelper.getUserFriendshipObject(PFUser.currentUser()!) { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
             if self.friendship != nil
             {
@@ -82,7 +93,7 @@ class HomeFeedTableViewController: UITableViewController {
                                 }
                             }
                         }
-                        self.tableView.reloadData()
+                        //self.tableView.reloadData()
                     }
                 }
             }
@@ -97,7 +108,7 @@ class HomeFeedTableViewController: UITableViewController {
     //MARK: NS Notification Actions
     
     func userClickOnAccept() {
-        getFeedData()
+        self.getFeedData()
         self.tableView.reloadData()
     }
     
@@ -105,11 +116,31 @@ class HomeFeedTableViewController: UITableViewController {
         self.getFeedData()
         self.tableView.reloadData()
     }
+    
+    func userRejectedResult()
+    {
+        self.getFeedData()
+        self.tableView.reloadData()
+    }
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if(self.userBets.count == 0)
+        {
+            let noDataLabel = UILabel(frame: CGRectMake(0,0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+            noDataLabel.text = "You have no bets. Create one now!"
+            noDataLabel.textColor = UIColor.lightGrayColor()
+            noDataLabel.textAlignment = .Center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .None
+            return 0
+        }
+        else
+        {
+            self.tableView.backgroundView = nil
+            return 1
+        }
         
     }
 

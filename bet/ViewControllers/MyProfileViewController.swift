@@ -40,8 +40,8 @@ class MyProfileViewController: UIViewController {
 
     @IBAction func logOutUser(sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Confirm log out", message: "Are you sure you want to log out", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Log out", style: .Destructive, handler: { (action: UIAlertAction) in
+        let alert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction) in
             alert.dismissViewControllerAnimated(true, completion: nil)
             PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
                 alert.dismissViewControllerAnimated(true, completion: nil)

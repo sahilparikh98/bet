@@ -17,28 +17,26 @@ class MyBetsViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.addSubview(refreshControl)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        let userQuery = Bet.query()
-        userQuery!.whereKey("creatingUser", equalTo: PFUser.currentUser()!)
-        userQuery!.whereKey("finished", equalTo: false)
-        userQuery!.whereKey("accepted", equalTo: true)
-        userQuery!.whereKey("rejected", equalTo: false)
-        userQuery!.includeKey("creatingUser")
-        userQuery!.includeKey("receivingUser")
-        userQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-            self.myBets = result as? [Bet] ?? []
-            self.tableView.reloadData()
-        }
+        self.getFeedData()
+        self.tableView.reloadData()
         
-        self.tableView.dcRefreshControl = DCRefreshControl {
-            self.tableView.reloadData()
-        }
         // Do any additional setup after loading the view.
     }
 
@@ -47,8 +45,19 @@ class MyBetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func handleRefresh(refreshControl: UIRefreshControl)
+    {
+        self.getFeedData()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
     
+    func getFeedData()
+    {
+        ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
+            self.myBets = result as? [Bet] ?? []
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -101,6 +110,25 @@ extension MyBetsViewController: UITableViewDataSource
             cell.yourProfilePicture.image = yourImage
             //image setup
             return cell
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        if(self.myBets.count == 0)
+        {
+            let noDataLabel = UILabel(frame: CGRectMake(0,0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+            noDataLabel.text = "You have no bets. Create one now!"
+            noDataLabel.textColor = UIColor.lightGrayColor()
+            noDataLabel.textAlignment = .Center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .None
+            return 0
+        }
+        else
+        {
+            self.tableView.backgroundView = nil
+            return 1
         }
     }
 }

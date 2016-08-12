@@ -24,7 +24,8 @@ class Bet : PFObject, PFSubclassing, Request{
     @NSManaged var fromUser: PFUser?
     @NSManaged var toUser: PFUser?
     @NSManaged var resultSubmitted: NSNumber?
-    
+    @NSManaged var senderName: String?
+    @NSManaged var receiverName: String?
     
     
     static func parseClassName() -> String {

@@ -58,9 +58,7 @@ class ResultRequestViewController: UIViewController {
     }
     */
     
-    
-    @IBAction func userAcceptsResult(sender: UIButton)
-    {
+    @IBAction func userAcceptsResult(sender: AnyObject) {
         if let bet = bet
         {
             if let result = result
@@ -69,10 +67,25 @@ class ResultRequestViewController: UIViewController {
                 result.accepted = true
                 result.saveInBackground()
                 bet.saveInBackground()
-                
+                        
             }
         }
     }
+    
+//    @IBAction func userAcceptsResult(sender: UIButton)
+//    {
+//        if let bet = bet
+//        {
+//            if let result = result
+//            {
+//                bet.finished = true
+//                result.accepted = true
+//                result.saveInBackground()
+//                bet.saveInBackground()
+//                
+//            }
+//        }
+//    }
     
 //    @IBAction func userRejectsResult(sender: UIButton)
 //    {
@@ -99,25 +112,50 @@ class ResultRequestViewController: UIViewController {
 //        }
 //    }
     @IBAction func userRejectsResult(sender: AnyObject) {
-        if result != nil
+        if let result = result
         {
             let rejectAlert = UIAlertController(title: "Are you sure you want to reject this result?", message: "This will cause a conflicted bet that will show up in your user profile.", preferredStyle: UIAlertControllerStyle.Alert)
             rejectAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler:{ (action: UIAlertAction) in
                 rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+                self.performSegueWithIdentifier("rejectResultRequest", sender: self)
 //                result.accepted = false
 //                result.rejected = true
 //                result.conflict = true
-//                bet.finished = true
-//                bet.saveInBackground()
+//                result.toBet!.finished = true
+//                result.toBet!.saveInBackground()
 //                result.saveInBackground()
                 
             }))
-            rejectAlert.addAction(UIAlertAction(title: "No", style: .Default, handler:{ (action: UIAlertAction) in
+            rejectAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler:{ (action: UIAlertAction) in
                 rejectAlert.dismissViewControllerAnimated(true, completion: nil)
             }))
             presentViewController(rejectAlert, animated: true, completion: nil)
         }
     }
     
-
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "rejectResultRequest"
+        {
+            var rejected = false
+            let rejectAlert = UIAlertController(title: "Are you sure you want to reject this result?", message: "This will cause a conflicted bet that will show up in your user profile.", preferredStyle: UIAlertControllerStyle.Alert)
+            rejectAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler:{ (action: UIAlertAction) in
+                rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("userRejectedResult", object: nil)
+                self.performSegueWithIdentifier("rejectResultRequest", sender: self)
+                rejected = true
+                
+            }))
+            rejectAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler:{ (action: UIAlertAction) in
+                rejectAlert.dismissViewControllerAnimated(true, completion: nil)
+                rejected = false
+            }))
+            presentViewController(rejectAlert, animated: true, completion: nil)
+            return rejected
+        }
+        else
+        {
+            return true
+        }
+    }
+    
 }

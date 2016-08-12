@@ -17,13 +17,16 @@ class RequestsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var betRequests: [Bet] = []
     var allRequests: [PFObject] = []
-        {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
     var friendRequests: [FriendRequest] = []
     var resultRequests: [Result] = []
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let titleDict: NSDictionary = [NSForegroundColorAttributeName : UIColor.whiteColor()]
@@ -31,45 +34,11 @@ class RequestsViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        ParseHelper.getUserBetRequests { (result: [PFObject]?, error: NSError?) -> Void in
-            self.betRequests = result as? [Bet] ?? []
-            for request in self.betRequests
-            {
-                self.allRequests.append(request)
-            }
-            self.tableView.reloadData()
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userAcceptedResult", name: "userAcceptedResult", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userRejectedResult", name: "userRejectedResult", object: nil)
+        self.tableView.addSubview(refreshControl)
+        self.getRequestFeedData()
         
-        ParseHelper.getUserFriendRequests { (result: [PFObject]?, error: NSError?) -> Void in
-            self.friendRequests = result as? [FriendRequest] ?? []
-            for request in self.friendRequests
-            {
-                self.allRequests.append(request)
-            }
-            self.tableView.reloadData()
-        }
-        
-        let resultQuery = Result.query()
-        resultQuery!.whereKey("toUser", equalTo: PFUser.currentUser()!)
-        resultQuery!.whereKey("rejected", equalTo: false)
-        resultQuery!.whereKey("accepted", equalTo: false)
-        resultQuery!.includeKey("toUser")
-        resultQuery!.includeKey("fromUser")
-        resultQuery!.includeKey("winner")
-        resultQuery!.includeKey("loser")
-        resultQuery!.includeKey("toBet")
-        resultQuery!.findObjectsInBackgroundWithBlock{ (result: [PFObject]?, error: NSError?) -> Void in
-            self.resultRequests = result as? [Result] ?? []
-            for resultRequest in self.resultRequests
-            {
-                self.allRequests.append(resultRequest)
-            }
-            self.tableView.reloadData()
-        }
-        self.tableView.dcRefreshControl = DCRefreshControl {
-            self.viewDidLoad()
-            self.tableView.reloadData()
-        }
         // Do any additional setup after loading the view.
     }
 
@@ -78,7 +47,60 @@ class RequestsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func handleRefresh(refreshControl: UIRefreshControl)
+    {
+        self.getRequestFeedData()
+        refreshControl.endRefreshing()
+    }
+    
+    func userAcceptedResult()
+    {
+        self.getRequestFeedData()
+        self.tableView.reloadData()
+    }
+    
+    func userRejectedResult()
+    {
+        self.getRequestFeedData()
+        self.tableView.reloadData()
+    }
+    
+    func getRequestFeedData()
+    {
+        self.allRequests.removeAll()
+        ParseHelper.getUserBetRequests { (result: [PFObject]?, error: NSError?) -> Void in
+            self.betRequests = result as? [Bet] ?? []
+            for request in self.betRequests
+            {
+                self.allRequests.append(request)
+            }
+            ParseHelper.getUserFriendRequests { (results: [PFObject]?, error: NSError?) -> Void in
+                self.friendRequests = results as? [FriendRequest] ?? []
+                for request in self.friendRequests
+                {
+                    self.allRequests.append(request)
+                }
+                let resultQuery = Result.query()
+                resultQuery!.whereKey("toUser", equalTo: PFUser.currentUser()!)
+                resultQuery!.whereKey("rejected", equalTo: false)
+                resultQuery!.whereKey("accepted", equalTo: false)
+                resultQuery!.includeKey("toUser")
+                resultQuery!.includeKey("fromUser")
+                resultQuery!.includeKey("winner")
+                resultQuery!.includeKey("loser")
+                resultQuery!.includeKey("toBet")
+                resultQuery!.findObjectsInBackgroundWithBlock{ (resultss: [PFObject]?, error: NSError?) -> Void in
+                    self.resultRequests = resultss as? [Result] ?? []
+                    for resultRequest in self.resultRequests
+                    {
+                        self.allRequests.append(resultRequest)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+    }
     
     // MARK: - Navigation
 
@@ -158,7 +180,7 @@ class RequestsViewController: UIViewController {
                 displayFriendRequestController.friendRequest!.rejected = false
                 displayFriendRequestController.friendRequest!.saveInBackground()
                 displayFriendRequestController.friendRequest!.saveInBackgroundWithBlock ({ (bool: Bool, error: NSError?) in
-                    ParseHelper.getUserFriendshipObject { (resultOne: PFObject?, error: NSError?) -> Void in
+                    ParseHelper.getUserFriendshipObject(PFUser.currentUser()!){ (resultOne: PFObject?, error: NSError?) -> Void in
                         let friendship = resultOne as? Friendships ?? nil
                         friendship!.friends.addObject(displayFriendRequestController.friendRequest!.creatingUser!)
                         friendship!.saveInBackgroundWithBlock( {(bool: Bool, error: NSError?) in
@@ -169,12 +191,12 @@ class RequestsViewController: UIViewController {
                         })
                     }
                 })
-                let backFriendship = Friendships()
-                backFriendship.friends.addObject(PFUser.currentUser()!)
-                backFriendship.user = displayFriendRequestController.friendRequest!.creatingUser!
-                backFriendship.saveInBackground()
-                displayFriendRequestController.friendRequest!.creatingUser!.saveInBackground()
-                self.tableView.reloadData()
+                ParseHelper.getUserFriendshipObject(displayFriendRequestController.friendRequest!.creatingUser!) { (resultTwo: PFObject?, error: NSError?) -> Void in
+                    let friendshipOther = resultTwo as? Friendships ?? nil
+                    friendshipOther!.friends.addObject(PFUser.currentUser()!)
+                    print("added \(PFUser.currentUser()!.username!) to \(displayFriendRequestController.friendRequest!.receivingUser!.username!)'s friends.")
+                    friendshipOther!.saveInBackground()
+                }
             }
             else if identifier == "rejectFriendRequest"
             {
@@ -194,6 +216,7 @@ class RequestsViewController: UIViewController {
                 controller.result!.accepted = true
                 controller.result!.rejected = false
                 controller.result!.toBet!.finished = true
+                controller.result!.toBet!.saveInBackground()
                 controller.result!.saveInBackgroundWithBlock({(bool: Bool, error: NSError?) in
                     self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
                     self.tableView.reloadData()
@@ -210,9 +233,12 @@ class RequestsViewController: UIViewController {
                 controller.result!.accepted = false
                 controller.result!.rejected = true
                 controller.result!.toBet!.finished = true
-                controller.result!.saveInBackground()
                 controller.result!.toBet!.saveInBackground()
-                self.allRequests.filter { $0 !== noLongerRequest }
+                controller.result!.saveInBackgroundWithBlock ({(bool: Bool, error: NSError?) in
+                    NSNotificationCenter.defaultCenter().postNotificationName("userRejectedResult", object: nil)
+                    self.allRequests = self.allRequests.filter { $0 !== noLongerRequest }
+                })
+                
             }
         }
     }
@@ -266,6 +292,25 @@ extension RequestsViewController: UITableViewDataSource
         // cell.requestLabel.text! = "\(allRequests[indexPath.section][indexPath.row].parseClassName) request from \(allRequests[indexPath.section][indexPath.row].creatingUser!.username)"
         
         //return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        if(self.allRequests.count == 0)
+        {
+            let noDataLabel = UILabel(frame: CGRectMake(0,0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+            noDataLabel.text = "You have no requests."
+            noDataLabel.textColor = UIColor.lightGrayColor()
+            noDataLabel.textAlignment = .Center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .None
+            return 0
+        }
+        else
+        {
+            self.tableView.backgroundView = nil
+            return 1
+        }
     }
 }
 

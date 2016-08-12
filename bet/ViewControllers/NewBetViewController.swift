@@ -16,6 +16,7 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var betDescription: UITextView!
     @IBOutlet weak var stakes: UITextField!
     @IBOutlet weak var userBeingBet: SearchTextField!
+    var allUsers = [PFUser]()
     var friends = [PFUser]()
     var opponentUser: PFUser?
     var friendship: Friendships?
@@ -27,6 +28,9 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.userBeingBet.theme.font = UIFont.systemFontOfSize(14)
+        self.userBeingBet.theme.cellHeight = 30
+        self.userBeingBet.highlightAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(14)]
         // Do any additional setup after loading the view.
         self.betDescription.layer.borderWidth = 1
         self.betDescription.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -39,6 +43,10 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             self.friends = result as? [PFUser] ?? []
             let friendsUsernames = self.friends.map { $0.username! }
             self.userBeingBet.filterStrings(friendsUsernames)
+        }
+        
+        ParseHelper.getAllUsers { (result: [PFObject]?, error: NSError?) -> Void in
+            self.allUsers = result as? [PFUser] ?? []
         }
         
         /*let friendsQuery = Friendships.query()
@@ -112,6 +120,15 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        for friend in friends
+        {
+            
+            if friend.username! == self.userBeingBet.text
+            {
+                opponentUser = friend
+            }
+        }
+        
         if identifier == "saveBetRequest"
         {
             if self.userBeingBet.text!.isEmpty
@@ -126,6 +143,15 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             else if self.betDescription.text! == "What's the bet? Include the terms!"
             {
                 let alert = UIAlertController(title: "No description", message: "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+                return false
+            }
+            else if self.opponentUser == nil
+            {
+                let alert = UIAlertController(title: "User not found", message: "Please enter a user in your friends list.", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
                     alert.dismissViewControllerAnimated(true, completion: nil)
                 }))
@@ -153,6 +179,8 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
                 bet.rejected = NSNumber.init(bool: false)
                 bet.fromUser = PFUser.currentUser()!
                 bet.toUser = opponentUser!
+                bet.senderName = PFUser.currentUser()!.username!
+                bet.receiverName = opponentUser!.username!
                 bet.saveInBackground()
                 return true
             }

@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
         }
         let friendsQuery = Friendships.query()
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
-        ParseHelper.getUserFriendshipObject { (result: PFObject?, error: NSError?) -> Void in
+        ParseHelper.getUserFriendshipObject(PFUser.currentUser()!) { (result: PFObject?, error: NSError?) -> Void in
             self.friendship = result as? Friendships ?? nil
             if self.friendship != nil
             {

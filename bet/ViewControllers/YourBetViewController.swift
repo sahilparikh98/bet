@@ -27,7 +27,7 @@ class YourBetViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let bet = bet
         {
-            if bet.creatingUser!.username! == PFUser.currentUser()!.username
+            if bet.creatingUser!.username! == PFUser.currentUser()!.username!
             {
                 self.opponent = self.bet!.receivingUser
                 self.friendLabel.text = opponent!.username!
@@ -100,14 +100,10 @@ class YourBetViewController: UIViewController {
                     result.accepted = false
                     result.rejected = false
                     result.toBet = self.bet!
+                    result.toBet!.resultSubmitted = true
+                    result.senderName = PFUser.currentUser()!.username!
+                    result.receiverName = PFUser.currentUser()!.username!
                     result.saveInBackground()
-                    let pushQuery = PFInstallation.query()!
-                    pushQuery.whereKey("user", equalTo: result.winner!)
-                    let data = ["alert" : "You have won your bet with \(result.loser!.username!). Approve the result!", "badge" : "Increment"]
-                    let push = PFPush()
-                    push.setQuery(pushQuery)
-                    push.setData(data)
-                    push.sendPushInBackground()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }))
                 presentViewController(confirmationAlert, animated: true, completion: nil)
@@ -144,13 +140,9 @@ class YourBetViewController: UIViewController {
                     result.accepted = false
                     result.rejected = false
                     result.toBet = self.bet!
+                    result.toBet!.resultSubmitted = true
+                    result.senderName = PFUser.currentUser()!.username!
                     result.saveInBackground()
-                    let pushQuery = PFInstallation.query()!
-                    pushQuery.whereKey("user", equalTo: self.opponent!)
-                    let push = PFPush()
-                    push.setQuery(pushQuery)
-                    push.setMessage("You have lost your bet with \(result.winner!.username!). Approve the result!")
-                    push.sendPushInBackground()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }))
                 presentViewController(confirmationAlert, animated: true, completion: nil)

@@ -39,6 +39,7 @@ public class ParseHelper
         userQuery!.whereKey("rejected", equalTo: false)
         userQuery!.includeKey("creatingUser")
         userQuery!.includeKey("receivingUser")
+        userQuery!.orderByDescending("createdAt")
         userQuery!.findObjectsInBackgroundWithBlock(completionBlock)
         
     }
@@ -160,10 +161,10 @@ public class ParseHelper
         query.getFirstObjectInBackgroundWithBlock(completionBlock)
     }
     
-    static func getUserFriendshipObject(completionBlock: PFObjectResultBlock)
+    static func getUserFriendshipObject(user: PFUser, completionBlock: PFObjectResultBlock)
     {
         let query = Friendships.query()!
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("user", equalTo: user)
         query.getFirstObjectInBackgroundWithBlock(completionBlock)
     }
     

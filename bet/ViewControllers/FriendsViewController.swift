@@ -16,9 +16,19 @@ class FriendsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    //Mark: Refresh Control Declaration
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getFriendData()
+        self.tableView.addSubview(self.refreshControl)
+        self.getFriendData()
+        self.tableView.reloadData()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userAcceptedFriendRequest", name: "userAcceptedFriendRequest", object: nil)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
@@ -27,6 +37,13 @@ class FriendsViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl)
+    {
+        self.getFriendData()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +57,6 @@ class FriendsViewController: UIViewController {
         ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
         }
-        self.tableView.reloadData()
 
     }
     
@@ -77,5 +93,24 @@ extension FriendsViewController: UITableViewDataSource
         cell.friendProfilePic.image = image
         return cell
         
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        if(self.friends.count == 0)
+        {
+            let noDataLabel = UILabel(frame: CGRectMake(0,0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+            noDataLabel.text = "You have no friends. Add one now!"
+            noDataLabel.textColor = UIColor.lightGrayColor()
+            noDataLabel.textAlignment = .Center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .None
+            return 0
+        }
+        else
+        {
+            self.tableView.backgroundView = nil
+            return 1
+        }
     }
 }

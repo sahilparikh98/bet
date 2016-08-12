@@ -28,6 +28,7 @@ class AddFriendsViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.friendToAdd.theme.font = UIFont.systemFontOfSize(14)
         self.friendToAdd.theme.cellHeight = 30
+        self.friendToAdd.highlightAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(14)]
         ParseHelper.getUserFriends { (results: [PFObject]?, error: NSError?) -> Void in
             self.friends = results as? [PFUser] ?? []
             ParseHelper.getAllUsers { (result: [PFObject]?, error: NSError?) -> Void in
@@ -88,20 +89,17 @@ class AddFriendsViewController: UIViewController {
                             self.friendRequest!.rejected = false
                             self.friendRequest!.creatingUser = PFUser.currentUser()!
                             self.friendRequest!.receivingUser = self.userToAdd!
+                            self.friendRequest!.senderName = PFUser.currentUser()!.username!
+                            self.friendRequest!.receiverName = self.userToAdd!.username!
                             self.friendRequest!.saveInBackground()
                             
-                            let pushQuery = PFInstallation.query()!
-                            pushQuery.whereKey("user", equalTo: self.userToAdd!)
-                            let data = ["alert" : "Friend request from \(self.userToAdd!.username!)", "badge" : "Increment"]
-                            let push = PFPush()
-                            push.setData(data)
-                            push.sendPushInBackground()
                             
-                            let confirmationAlert = UIAlertController(title: "Request sent", message: "Friend request has been sent", preferredStyle: UIAlertControllerStyle.Alert)
+                            let confirmationAlert = UIAlertController(title: "Request sent", message: "Friend request has been sent.", preferredStyle: UIAlertControllerStyle.Alert)
                             confirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
                                 confirmationAlert.navigationController?.popToRootViewControllerAnimated(true)
                             }))
                             self.presentViewController(confirmationAlert, animated: true, completion: nil)
+                            self.friendToAdd.text = ""
                         }
                         else
                         {

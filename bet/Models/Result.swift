@@ -19,6 +19,8 @@ class Result: PFObject, PFSubclassing {
     @NSManaged var fromUser: PFUser?
     @NSManaged var toUser: PFUser?
     @NSManaged var conflict: NSNumber?
+    @NSManaged var senderName: String?
+    @NSManaged var receiverName: String?
     
     //MARK: PFObject Required Methods
     

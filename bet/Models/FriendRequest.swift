@@ -17,6 +17,8 @@ class FriendRequest: PFObject, PFSubclassing, Request {
     @NSManaged var toUser: PFUser?
     @NSManaged var accepted: NSNumber?
     @NSManaged var rejected: NSNumber?
+    @NSManaged var senderName: String?
+    @NSManaged var receiverName: String?
     
     static func parseClassName() -> String
     {
