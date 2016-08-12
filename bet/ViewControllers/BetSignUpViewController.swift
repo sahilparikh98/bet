@@ -17,6 +17,7 @@ class BetSignUpViewController: PFSignUpViewController {
         logo.text = "Bet"
         logo.textColor = UIColor.whiteColor()
         logo.font = UIFont(name: "Futura", size: 70)
+        self.signUpView
         self.signUpView!.logo = logo
         self.signUpView!.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         super.viewDidLoad()

@@ -48,7 +48,7 @@ class YourBetViewController: UIViewController {
                 self.yourProfilePic.image = yourImage
                 //image set up
             }
-            self.betDescription.font = UIFont.systemFontOfSize(14)
+            self.betDescription.font = UIFont.systemFontOfSize(17)
             self.betDescription.text = "\(self.bet!.betDescription!)"
         }
         

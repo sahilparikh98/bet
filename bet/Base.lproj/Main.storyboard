@@ -131,10 +131,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-ga-RAL">
                                 <rect key="frame" x="291" y="163" width="18" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Bet description" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-SB-Gs2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Bet description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-SB-Gs2">
                                 <rect key="frame" x="20" y="270" width="560" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -543,7 +542,9 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-R8-AxN">
                                 <rect key="frame" x="22" y="513" width="43" height="30"/>
-                                <state key="normal" title="Reject"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="userRejectsResult:" destination="187-KX-T0x" eventType="touchUpInside" id="rmS-Kz-slx"/>
                                     <segue destination="cUg-Sd-gd4" kind="unwind" identifier="rejectResultRequest" unwindAction="unwindToRequestsViewController:" id="EoJ-rm-udc"/>
@@ -554,7 +555,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="et5-1J-kj4"/>
                                 </constraints>
-                                <state key="normal" title="Accept"/>
+                                <state key="normal" title="Accept">
+                                    <color key="titleColor" red="0.052017980329999998" green="0.72309695510000005" blue="0.083916578340000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="userAcceptsResult:" destination="187-KX-T0x" eventType="touchUpInside" id="FWg-98-4QR"/>
                                     <segue destination="cUg-Sd-gd4" kind="unwind" identifier="acceptResultRequest" unwindAction="unwindToRequestsViewController:" id="S5i-tx-PPe"/>
@@ -635,7 +638,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9G-Em-MMU">
                                 <rect key="frame" x="533" y="380" width="49" height="30"/>
                                 <state key="normal" title="Accept">
-                                    <color key="titleColor" red="1" green="0.093669809470000004" blue="0.048010594730000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.052017980329999998" green="0.72309695510000005" blue="0.083916578340000006" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="quu-ud-i3K" kind="unwind" identifier="accept" unwindAction="unwindToRequestsViewController:" id="jW0-Go-w2e"/>
@@ -1310,7 +1313,7 @@
                                     <action selector="reportBet:" destination="0UT-al-NRX" eventType="touchUpInside" id="X6q-fa-Q2U"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Bet description" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-Wo-WtQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Bet description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-Wo-WtQ">
                                 <rect key="frame" x="20" y="251" width="560" height="97"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

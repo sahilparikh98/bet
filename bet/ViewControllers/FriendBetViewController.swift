@@ -34,10 +34,9 @@ class FriendBetViewController: UIViewController {
             self.creatingUserProfilePic.image = image
             let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
             self.receivingUserProfilePic.image = otherImage
-            self.betDescription.font = UIFont.systemFontOfSize(14)
+            self.betDescription.font = UIFont.systemFontOfSize(17)
             self.betDescription.text = "\(self.bet!.betDescription!)"
         }
-        self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         // Do any additional setup after loading the view.
     }
 
