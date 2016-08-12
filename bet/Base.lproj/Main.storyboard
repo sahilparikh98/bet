@@ -849,12 +849,13 @@
                                             <outlet property="friendLabel" destination="t9v-QB-RZI" id="kv1-GV-JMa"/>
                                             <outlet property="friendProfilePic" destination="qcF-2f-knz" id="RiH-Xc-uzU"/>
                                             <outlet property="yourProfilePicture" destination="3Vc-7R-MEU" id="gqU-DC-tuK"/>
-                                            <segue destination="Wnx-fl-KUO" kind="show" id="KVT-9m-xi8"/>
+                                            <segue destination="Wnx-fl-KUO" kind="show" identifier="displayYourBet" id="KVT-9m-xi8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="cmc-yv-Vob" id="w24-tk-JH7"/>
+                                    <outlet property="delegate" destination="cmc-yv-Vob" id="gfI-vX-gur"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -1413,6 +1414,6 @@
         <image name="Requests" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hc7-cy-zrj"/>
+        <segue reference="KVT-9m-xi8"/>
     </inferredMetricsTieBreakers>
 </document>

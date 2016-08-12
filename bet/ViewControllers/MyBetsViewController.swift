@@ -82,7 +82,7 @@ class MyBetsViewController: UIViewController {
     
 }
 
-extension MyBetsViewController: UITableViewDataSource
+extension MyBetsViewController: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.myBets.count
@@ -131,4 +131,9 @@ extension MyBetsViewController: UITableViewDataSource
             return 1
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
 }
