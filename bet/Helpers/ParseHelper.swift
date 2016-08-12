@@ -41,7 +41,19 @@ public class ParseHelper
         userQuery!.includeKey("receivingUser")
         userQuery!.orderByDescending("createdAt")
         userQuery!.findObjectsInBackgroundWithBlock(completionBlock)
-        
+    }
+    
+    static func getUserBetsNonUserCreated(completionBlock: PFQueryArrayResultBlock)
+    {
+        let userQuery = Bet.query()
+        userQuery!.whereKey("receivingUser", equalTo: PFUser.currentUser()!)
+        userQuery!.whereKey("finished", equalTo: false)
+        userQuery!.whereKey("accepted", equalTo: true)
+        userQuery!.whereKey("rejected", equalTo: false)
+        userQuery!.includeKey("creatingUser")
+        userQuery!.includeKey("receivingUser")
+        userQuery!.orderByDescending("createdAt")
+        userQuery!.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
     static func getUserFriendRequests(completionBlock: PFQueryArrayResultBlock)

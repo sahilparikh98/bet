@@ -73,6 +73,14 @@ class HomeFeedTableViewController: UITableViewController {
             print("\(self.userBets.count)")
             //self.tableView.reloadData()
         }
+        ParseHelper.getUserBetsNonUserCreated { (result: [PFObject]?, error: NSError?) -> Void in
+            let nonUserCreatedBets = result as? [Bet] ?? []
+            for bet in nonUserCreatedBets
+            {
+                self.userBets.append(bet)
+            }
+            
+        }
         let friendsQuery = Friendships.query()
         friendsQuery!.whereKey("user", equalTo: PFUser.currentUser()!)
         ParseHelper.getUserFriendshipObject(PFUser.currentUser()!) { (result: PFObject?, error: NSError?) -> Void in

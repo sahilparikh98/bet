@@ -12,7 +12,7 @@ class FriendBetViewController: UIViewController {
     
     @IBOutlet weak var creatingUserLabel: UILabel!
     @IBOutlet weak var creatingUserProfilePic: UIImageView!
-    
+    @IBOutlet weak var betDescription: UITextView!
     @IBOutlet weak var receivingUserLabel: UILabel!
     @IBOutlet weak var receivingUserProfilePic: UIImageView!
     
@@ -34,6 +34,8 @@ class FriendBetViewController: UIViewController {
             self.creatingUserProfilePic.image = image
             let otherImage = ParseHelper.getProfilePicture(bet.receivingUser!)
             self.receivingUserProfilePic.image = otherImage
+            self.betDescription.font = UIFont.systemFontOfSize(14)
+            self.betDescription.text = "\(self.bet!.betDescription!)"
         }
         self.view.backgroundColor = UIColor(red:0.76, green:0.26, blue:0.25, alpha:1.0)
         // Do any additional setup after loading the view.

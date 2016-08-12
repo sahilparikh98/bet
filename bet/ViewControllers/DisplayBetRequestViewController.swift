@@ -24,6 +24,7 @@ class DisplayBetRequestViewController: UIViewController {
         if let bet = bet
         {
             self.fromUser.text = bet.creatingUser!.username!
+            self.betDescription.font = UIFont.systemFontOfSize(14)
             self.betDescription.text = bet.betDescription!
             let image = ParseHelper.getProfilePicture(bet.creatingUser!)
             self.friendProfilePic.image = image

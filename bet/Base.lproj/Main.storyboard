@@ -398,9 +398,7 @@
                             <constraint firstItem="Ynk-X0-B5S" firstAttribute="leading" secondItem="XV0-pG-PRo" secondAttribute="leadingMargin" id="uYJ-hx-NoY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Friends" id="jVt-gP-Nsk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sg5-cg-d17"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Add Friends" id="jVt-gP-Nsk"/>
                     <connections>
                         <outlet property="addButton" destination="kwe-aE-Ipa" id="W9q-qb-VSS"/>
                         <outlet property="friendToAdd" destination="Ynk-X0-B5S" id="TJa-td-8iA"/>
@@ -926,7 +924,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rek-LI-wxt" userLabel="Button View">
-                                                    <rect key="frame" x="-9" y="140" width="583" height="43"/>
+                                                    <rect key="frame" x="-9" y="140" width="570" height="43"/>
                                                     <subviews>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4E-bo-Dy4">
                                                             <rect key="frame" x="0.0" y="0.0" width="583" height="43"/>
@@ -940,7 +938,7 @@
                                                         <constraint firstItem="m4E-bo-Dy4" firstAttribute="top" secondItem="rek-LI-wxt" secondAttribute="top" id="2iu-XY-NZl"/>
                                                         <constraint firstItem="m4E-bo-Dy4" firstAttribute="leading" secondItem="rek-LI-wxt" secondAttribute="leading" id="NgA-9t-94q"/>
                                                         <constraint firstAttribute="bottom" secondItem="m4E-bo-Dy4" secondAttribute="bottom" id="NzF-KI-8EV"/>
-                                                        <constraint firstAttribute="trailing" secondItem="m4E-bo-Dy4" secondAttribute="trailing" id="Osm-fa-X1F"/>
+                                                        <constraint firstAttribute="trailing" secondItem="m4E-bo-Dy4" secondAttribute="trailing" constant="-13" id="Osm-fa-X1F"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-xD-3q5">
@@ -957,7 +955,7 @@
                                                 <constraint firstItem="rek-LI-wxt" firstAttribute="top" secondItem="KYe-xD-3q5" secondAttribute="bottom" constant="18" id="6RW-Zz-oVG"/>
                                                 <constraint firstItem="rek-LI-wxt" firstAttribute="leading" secondItem="IlR-JT-Dzr" secondAttribute="leadingMargin" constant="-17" id="7GD-M5-eDg"/>
                                                 <constraint firstAttribute="trailing" secondItem="msZ-Dp-flJ" secondAttribute="trailing" id="Fh5-4b-SNe"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rek-LI-wxt" secondAttribute="trailing" constant="-30" id="RRg-Co-ZeU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rek-LI-wxt" secondAttribute="trailing" constant="-17" id="RRg-Co-ZeU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="rek-LI-wxt" secondAttribute="bottom" id="UlB-c3-9cF"/>
                                                 <constraint firstItem="Gae-V7-gz5" firstAttribute="top" secondItem="msZ-Dp-flJ" secondAttribute="bottom" constant="13" id="Vkx-rz-rdi"/>
                                                 <constraint firstItem="MX2-cZ-yjx" firstAttribute="leading" secondItem="IlR-JT-Dzr" secondAttribute="leading" id="aak-rd-Vnc"/>
@@ -1346,6 +1344,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Friend Bet" id="rjz-yh-ppx"/>
                     <connections>
+                        <outlet property="betDescription" destination="cEs-Wo-WtQ" id="891-Oo-lwr"/>
                         <outlet property="creatingUserLabel" destination="KO3-oE-HF5" id="60s-ZJ-Q7N"/>
                         <outlet property="creatingUserProfilePic" destination="AeF-tw-sPR" id="Yjl-hb-erm"/>
                         <outlet property="receivingUserLabel" destination="MJS-xg-EiY" id="6Qm-om-Hyz"/>

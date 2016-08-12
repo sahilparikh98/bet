@@ -194,7 +194,6 @@ class RequestsViewController: UIViewController {
                 ParseHelper.getUserFriendshipObject(displayFriendRequestController.friendRequest!.creatingUser!) { (resultTwo: PFObject?, error: NSError?) -> Void in
                     let friendshipOther = resultTwo as? Friendships ?? nil
                     friendshipOther!.friends.addObject(PFUser.currentUser()!)
-                    print("added \(PFUser.currentUser()!.username!) to \(displayFriendRequestController.friendRequest!.receivingUser!.username!)'s friends.")
                     friendshipOther!.saveInBackground()
                 }
             }

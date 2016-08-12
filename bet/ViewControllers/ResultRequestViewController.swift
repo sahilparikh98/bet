@@ -33,7 +33,7 @@ class ResultRequestViewController: UIViewController {
             {
                 self.usersInvolved.text = "\(result.fromUser!.username!) has lost the bet!"
             }
-            
+            self.betDescription.font = UIFont.systemFontOfSize(14)
             self.betDescription.text = result.toBet!.betDescription!
             let image = ParseHelper.getProfilePicture(result.fromUser!)
             self.friendProfilePic.image = image
