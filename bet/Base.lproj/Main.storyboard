@@ -688,6 +688,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjX-Ji-Ayk">
                                 <rect key="frame" x="157" y="85" width="423" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9E6-05-vnf"/>
                                     <constraint firstAttribute="width" constant="423" id="BaI-hs-ExZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -707,7 +708,6 @@
                             <constraint firstItem="Qa6-xl-Jzc" firstAttribute="top" secondItem="PBq-f1-bZt" secondAttribute="bottom" constant="8" id="4b8-lQ-w1F"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Qa6-xl-Jzc" secondAttribute="leading" id="d8b-rq-x2h"/>
                             <constraint firstItem="RjX-Ji-Ayk" firstAttribute="top" secondItem="PBq-f1-bZt" secondAttribute="bottom" constant="21" id="dfH-bO-Lai"/>
-                            <constraint firstItem="ylg-dm-HOQ" firstAttribute="top" secondItem="RjX-Ji-Ayk" secondAttribute="bottom" constant="445" id="pS5-tw-wwO"/>
                             <constraint firstItem="RjX-Ji-Ayk" firstAttribute="leading" secondItem="Qa6-xl-Jzc" secondAttribute="trailing" constant="17" id="umC-qu-HNE"/>
                         </constraints>
                     </view>
@@ -1125,7 +1125,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who are you betting?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6" customClass="SearchTextField" customModule="SearchTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick a friend to bet!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-oa-9t6" customClass="SearchTextField" customModule="SearchTextField">
                                 <rect key="frame" x="39" y="102" width="541" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1133,6 +1133,9 @@
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's the bet? Include the terms!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xku-O8-jvg">
                                 <rect key="frame" x="39" y="154" width="541" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="nEw-G6-Xh3"/>
+                                </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1145,7 +1148,6 @@
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="trailing" secondItem="xku-O8-jvg" secondAttribute="trailing" id="AyP-qH-KzD"/>
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="leading" secondItem="Y3V-4d-Kzs" secondAttribute="leadingMargin" constant="19" id="cGa-Zz-GDU"/>
                             <constraint firstItem="xku-O8-jvg" firstAttribute="top" secondItem="2FB-oa-9t6" secondAttribute="bottom" constant="22" id="ppg-hy-3HX"/>
-                            <constraint firstItem="aMN-q2-bTu" firstAttribute="top" secondItem="xku-O8-jvg" secondAttribute="bottom" constant="269" id="rNC-0c-Oos"/>
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="leading" secondItem="xku-O8-jvg" secondAttribute="leading" id="uEw-T0-lnu"/>
                         </constraints>
                     </view>
