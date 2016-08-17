@@ -20,6 +20,7 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
     var friends = [PFUser]()
     var opponentUser: PFUser?
     var friendship: Friendships?
+    var noSuchFriend: [String] = ["No such friend."]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.betDescription.delegate = self
@@ -43,7 +44,18 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             self.friends = result as? [PFUser] ?? []
             let friendsUsernames = self.friends.map { $0.username! }
             self.userBeingBet.filterStrings(friendsUsernames)
+            self.userBeingBet.userStoppedTypingHandler = {
+                if let criteria = self.userBeingBet.text
+                {
+                    if criteria.characters.count > 1 {
+                        self.userBeingBet.showLoadingIndicator()
+                        self.userBeingBet.filterStrings(self.noSuchFriend)
+                        self.userBeingBet.stopLoadingIndicator()
+                    }
+                }
+            }
         }
+        
         
         ParseHelper.getAllUsers { (result: [PFObject]?, error: NSError?) -> Void in
             self.allUsers = result as? [PFUser] ?? []
