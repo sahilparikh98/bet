@@ -24,6 +24,7 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SearchTextField (0.1.0)
+  - SwiftSpinner (0.9.5)
 
 DEPENDENCIES:
   - Bond (= 4.0.0)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - ParseFacebookUtilsV4
   - ParseUI
   - SearchTextField
+  - SwiftSpinner
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -45,7 +47,8 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SearchTextField: 3f5aecd8b33879dcaba496e5ffc7a00b9df2eb65
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
 
-PODFILE CHECKSUM: 64c037fe54f1e11226f9f4ae0cbb9c37e37e4312
+PODFILE CHECKSUM: be8a96d64c9d491508c9dc30a6bdf6622b6eb40c
 
 COCOAPODS: 1.0.1

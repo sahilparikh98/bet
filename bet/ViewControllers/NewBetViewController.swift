@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import SearchTextField
+import SwiftSpinner
 
 class NewBetViewController: UIViewController, UITextViewDelegate {
 
@@ -44,16 +45,6 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             self.friends = result as? [PFUser] ?? []
             let friendsUsernames = self.friends.map { $0.username! }
             self.userBeingBet.filterStrings(friendsUsernames)
-            self.userBeingBet.userStoppedTypingHandler = {
-                if let criteria = self.userBeingBet.text
-                {
-                    if criteria.characters.count > 1 {
-                        self.userBeingBet.showLoadingIndicator()
-                        self.userBeingBet.filterStrings(self.noSuchFriend)
-                        self.userBeingBet.stopLoadingIndicator()
-                    }
-                }
-            }
         }
         
         
@@ -77,6 +68,23 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
         
     }
 
+    func searchResults(name: String, usernames: [String]) -> Bool
+    {
+        var found = false
+        for username in usernames
+        {
+            let numChar = name.characters.count
+            if username.characters.count >= numChar
+            {
+                if name == username.substringToIndex(username.startIndex.advancedBy(numChar))
+                {
+                    found = true
+                }
+            }
+        }
+        return found
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.textColor == UIColor.lightGrayColor() {
             textView.text = nil

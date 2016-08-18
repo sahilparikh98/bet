@@ -12,6 +12,7 @@ target 'bet' do
   pod ‘ParseUI’
   pod “SearchTextField”
   pod ‘DCPullRefresh’, ‘~> 1.0’
+  pod “SwiftSpinner”
   # Pods for bet
 
 end

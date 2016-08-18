@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uA9-LI-Dt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="1358"/>
+            <point key="canvasLocation" x="2556" y="1472"/>
         </scene>
         <!--Friend Request-->
         <scene sceneID="Lpp-jG-mDo">
@@ -1100,7 +1100,7 @@
                     <navigationItem key="navigationItem" title="Home" id="dbM-le-V7v">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gvC-eH-SIq">
                             <connections>
-                                <segue destination="j2c-V2-Fgg" kind="show" identifier="createBet" id="rzD-ip-k8D"/>
+                                <segue destination="j2c-V2-Fgg" kind="show" identifier="createBet" id="Ab6-9M-pWl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1131,7 +1131,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's the bet? Include the terms!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xku-O8-jvg">
-                                <rect key="frame" x="39" y="154" width="541" height="128"/>
+                                <rect key="frame" x="39" y="162" width="541" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="nEw-G6-Xh3"/>
@@ -1147,14 +1147,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="2FB-oa-9t6" secondAttribute="trailing" id="62m-Eg-moF"/>
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="trailing" secondItem="xku-O8-jvg" secondAttribute="trailing" id="AyP-qH-KzD"/>
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="leading" secondItem="Y3V-4d-Kzs" secondAttribute="leadingMargin" constant="19" id="cGa-Zz-GDU"/>
-                            <constraint firstItem="xku-O8-jvg" firstAttribute="top" secondItem="2FB-oa-9t6" secondAttribute="bottom" constant="22" id="ppg-hy-3HX"/>
+                            <constraint firstItem="xku-O8-jvg" firstAttribute="top" secondItem="2FB-oa-9t6" secondAttribute="bottom" constant="30" id="ppg-hy-3HX"/>
                             <constraint firstItem="2FB-oa-9t6" firstAttribute="leading" secondItem="xku-O8-jvg" secondAttribute="leading" id="uEw-T0-lnu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Bet" id="t3o-6g-pMQ">
                         <barButtonItem key="rightBarButtonItem" title="That's a bet!" id="bXx-b6-hCg">
                             <connections>
-                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="saveBetRequest" unwindAction="unwindToHomeFeedViewController:" id="Et1-hW-Kqu"/>
+                                <segue destination="0iD-zY-Ngj" kind="unwind" unwindAction="unwindToHomeFeedViewController:" id="tNi-kD-hFq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1166,7 +1166,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeB-C8-ehH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0iD-zY-Ngj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="2"/>
+            <point key="canvasLocation" x="2556" y="137"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Exi-3x-fgR">
@@ -1367,7 +1367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-m5-fRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="660"/>
+            <point key="canvasLocation" x="2556" y="802"/>
         </scene>
         <!--Friends-->
         <scene sceneID="38z-Ne-VNK">
@@ -1416,6 +1416,6 @@
         <image name="Requests" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KVT-9m-xi8"/>
+        <segue reference="hc7-cy-zrj"/>
     </inferredMetricsTieBreakers>
 </document>
