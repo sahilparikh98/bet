@@ -39,12 +39,12 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
         self.betDescription.layer.cornerRadius = 8
         self.betDescription.text = "What's the bet? Include the terms!"
         self.betDescription.textColor = UIColor.lightGrayColor()
-        
-        
+        SwiftSpinner.show("Loading")
         ParseHelper.getUserFriends { (result: [PFObject]?, error: NSError?) -> Void in
             self.friends = result as? [PFUser] ?? []
             let friendsUsernames = self.friends.map { $0.username! }
             self.userBeingBet.filterStrings(friendsUsernames)
+            SwiftSpinner.hide()
         }
         
         
@@ -67,7 +67,7 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
         
         
     }
-
+    
     func searchResults(name: String, usernames: [String]) -> Bool
     {
         var found = false
