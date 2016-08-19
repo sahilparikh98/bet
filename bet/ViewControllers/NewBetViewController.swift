@@ -197,8 +197,8 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
                 bet.forUsers = PFUser.currentUser()!
                 bet.againstUsers = opponentUser!
                 bet.finished = false
-                bet.accepted = NSNumber.init(bool: false)
-                bet.rejected = NSNumber.init(bool: false)
+                bet.accepted = false
+                bet.rejected = false
                 bet.fromUser = PFUser.currentUser()!
                 bet.toUser = opponentUser!
                 bet.senderName = PFUser.currentUser()!.username!
