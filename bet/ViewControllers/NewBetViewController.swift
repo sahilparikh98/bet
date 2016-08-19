@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import SearchTextField
 import SwiftSpinner
+import Whisper
 
 class NewBetViewController: UIViewController, UITextViewDelegate {
 
@@ -162,7 +163,7 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             }
             else if self.betDescription.text! == "What's the bet? Include the terms!"
             {
-                let alert = UIAlertController(title: "No description", message: "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "No description", message: "Please enter a description.", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) in
                     alert.dismissViewControllerAnimated(true, completion: nil)
                 }))
@@ -180,6 +181,7 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
             }
             else
             {
+                print("bet can be sent")
                 for friend in friends
                 {
 
@@ -202,6 +204,9 @@ class NewBetViewController: UIViewController, UITextViewDelegate {
                 bet.senderName = PFUser.currentUser()!.username!
                 bet.receiverName = opponentUser!.username!
                 bet.saveInBackground()
+                let murmur = Murmur(title: "Your bet request has been sent and is pending.")
+                show(whistle: murmur)
+                hide(whistleAfter: 3)
                 return true
             }
         }

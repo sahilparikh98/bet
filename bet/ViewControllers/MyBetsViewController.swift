@@ -9,6 +9,7 @@
 import UIKit
 import Bond
 import Parse
+import SwiftSpinner
 class MyBetsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -54,8 +55,10 @@ class MyBetsViewController: UIViewController {
     
     func getFeedData()
     {
+        SwiftSpinner.show("Loading...")
         ParseHelper.getUserBets { (result: [PFObject]?, error: NSError?) -> Void in
             self.myBets = result as? [Bet] ?? []
+            SwiftSpinner.hide()
         }
     }
     // MARK: - Navigation

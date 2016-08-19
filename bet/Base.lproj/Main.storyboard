@@ -1154,7 +1154,7 @@
                     <navigationItem key="navigationItem" title="New Bet" id="t3o-6g-pMQ">
                         <barButtonItem key="rightBarButtonItem" title="That's a bet!" id="bXx-b6-hCg">
                             <connections>
-                                <segue destination="0iD-zY-Ngj" kind="unwind" unwindAction="unwindToHomeFeedViewController:" id="tNi-kD-hFq"/>
+                                <segue destination="0iD-zY-Ngj" kind="unwind" identifier="saveBetRequest" unwindAction="unwindToHomeFeedViewController:" id="tNi-kD-hFq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
